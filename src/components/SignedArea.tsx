@@ -1,7 +1,10 @@
-import { Stage, Layer, Shape, Circle, Text } from "react-konva";
+import { Stage, Layer, Circle, Text, Arrow } from "react-konva";
 import { Button } from "@mui/material";
 import { Point, dragProps, edgeFunction } from "./utils";
 import { useState } from "react";
+import RotateLeftIcon from "@mui/icons-material/RotateLeft";
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import { Html } from "react-konva-utils";
 
 const width = 500;
 const height = 500;
@@ -16,6 +19,11 @@ export const SignedArea = () => {
   const [p1, setP1] = useState<Point>(p1start);
   const [p2, setP2] = useState<Point>(p2start);
   const signedArea = edgeFunction(p0, p1, p2);
+
+  const center = {
+    x: (p0.x + p1.x + p2.x) / 3 - 24,
+    y: (p0.y + p1.y + p2.y) / 3 - 24,
+  };
 
   return (
     <div className="container" style={{ width: width }}>
@@ -34,9 +42,26 @@ export const SignedArea = () => {
       </Button>
       <Stage width={width} height={height} className="stage">
         <Layer>
+          <Html
+            divProps={{
+              style: {
+                position: "absolute",
+                top: `${center.y}px`,
+                left: `${center.x}px`,
+                scale: 2,
+                pointerEvents: "none",
+              },
+            }}
+          >
+            {signedArea > 0 ? (
+              <RotateRightIcon />
+            ) : (
+              <RotateLeftIcon sx={{ fill: "red" }} />
+            )}
+          </Html>
           <Text
             fill={signedArea > 0 ? "black" : "red"}
-            text={`Order: ${
+            text={`Winding order: ${
               signedArea > 0 ? "Clockwise" : "Counter-clockwise"
             }`}
             fontSize={16}
@@ -44,22 +69,31 @@ export const SignedArea = () => {
             y={10}
           />
           <Text
-            text={`Signed area: ${signedArea / 2}`}
+            text={`Signed area: ${signedArea}`}
             fontSize={16}
             x={10}
             y={30}
           />
-          <Shape
-            sceneFunc={(context, shape) => {
-              context.beginPath();
-              context.moveTo(p0.x, p0.y);
-              context.lineTo(p1.x, p1.y);
-              context.lineTo(p2.x, p2.y);
-              context.closePath();
-              context.fillStrokeShape(shape);
-            }}
+          <Arrow
+            points={[p0.x, p0.y, p1.x, p1.y]}
             stroke={"black"}
-            strokeWidth={2}
+            pointerWidth={10}
+            pointerLength={15}
+            fill={signedArea > 0 ? "black" : "red"}
+          />
+          <Arrow
+            points={[p1.x, p1.y, p2.x, p2.y]}
+            stroke={"black"}
+            pointerWidth={10}
+            pointerLength={15}
+            fill={signedArea > 0 ? "black" : "red"}
+          />
+          <Arrow
+            points={[p2.x, p2.y, p0.x, p0.y]}
+            stroke={"black"}
+            pointerWidth={10}
+            pointerLength={15}
+            fill={signedArea > 0 ? "black" : "red"}
           />
           <Text
             text={`A (${p0.x},${p0.y})`}

@@ -12,6 +12,7 @@ import { Barycentric } from "./components/Barycentric";
 import redTriangle from "./images/redTriangle.png";
 import interpolatedTriangle from "./images/interpolatedTriangle.png";
 import { BoundingBox } from "./components/BoundingBox";
+import { MathJax } from "better-react-mathjax";
 
 function App() {
   return (
@@ -26,7 +27,53 @@ function App() {
           Area of a triangle (Edge functions)
         </Typography>
         <Typography variant="body1">
-          The area of a triangle is given by the following formula:
+          Usually when you think of the area of a triangle, you think of the
+          following formula:
+          <MathJax>{"\\[Area = \\frac{Base*Height}{2}\\]"}</MathJax>
+          While this formula works great for calculating the area of a triangle,
+          it requires we know the base and height of the triangle. What if we
+          don't know the base and height? What if we only know the coordinates
+          of the vertices of the triangle? Luckily there's a formula for that
+          called the{" "}
+          <Link href="https://en.wikipedia.org/wiki/Shoelace_formula">
+            Shoelace formula
+          </Link>
+          . The shoelace formula lets us calculate the area of a triangle given
+          the coordinates of its vertices. The formula is as follows:
+          <MathJax>
+            {
+              "\\[Area = \\frac{1}{2}\\lvert(x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)\\rvert\\]"
+            }
+          </MathJax>
+          So now we have a formula for calculating the area of a triangle, but
+          how do we use it to determine whether a point is inside a triangle? If
+          you notice the formula above has absolute value bars around it. This
+          is because the area of a triangle should always be positive. If we
+          remove the absolute value bars, then sometimes we will get a negative
+          area. This is called a signed area.
+          <MathJax>
+            {
+              "\\[SignedArea = \\frac{1}{2}((x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a))\\]"
+            }
+          </MathJax>
+          What does a negative area mean though? It all comes down to how the
+          points of our triangle (ABC) are ordered.
+          <ul>
+            <li>
+              If our points are in a Clockwise order the signed area will be
+              positive.
+            </li>
+            <li>
+              If our points are in a{" "}
+              <span style={{ color: "red" }}>Counter-clockwise</span> order the
+              signed area will be negative.
+            </li>
+          </ul>
+          While we're at it, lets also remove the 1/2 from the formula as all we
+          care about is whether the area is positive or negative.
+          <MathJax>
+            {"\\[SignedArea = (x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)\\]"}
+          </MathJax>
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.edgeFunc}
