@@ -1,6 +1,6 @@
 import "./App.css";
 import { Link, Typography } from "@mui/material";
-import { Barycentric } from "./components/Barycentric";
+import { Barycentric } from "./components/Barycentric/Barycentric";
 
 function App() {
   return (
