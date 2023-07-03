@@ -3,7 +3,14 @@ const signedArea = (a: Point, b: Point, c: Point) => {
   return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
 };
 
-signedArea(A, B, C);`;
+const ABC = signedArea(A, B, C);`;
+
+const edgeFunc2 = `const ABC = signedArea(A, B, C);
+
+// If the signed area is negative, it's a back facing triangle and we can cull it
+if (ABC < 0) {
+  // Don't bother drawing this triangle
+}`;
 
 const pointInTriangle1 = `// Get the signed area of the triangle ABP
 const ABP = signedArea(A, B, P);
@@ -19,7 +26,8 @@ const PAB = signedArea(P, A, B);
 
 ABP === BPA === PAB;`;
 
-const pointInTriangle2 = `// Get the signed area of all three triangles that make up ABC (Remember clockwise ordering)
+const pointInTriangle2 = `// Get the signed area of all three triangles that make up ABC 
+// (Remember clockwise ordering)
 const ABP = signedArea(A, B, P); 
 const BCP = signedArea(B, C, P);
 const CAP = signedArea(C, A, P);
@@ -59,6 +67,7 @@ const colourP = colourA.multiply(weightA) + colourB.multiply(weightB) + colourC.
 
 export const snippets = {
   edgeFunc,
+  edgeFunc2,
   pointInTriangle1,
   pointInTriangle1b,
   pointInTriangle2,

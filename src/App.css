@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -17,4 +17,13 @@
 
 .container {
   position: relative;
+}
+
+.interactiveWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.sectionHeading {
+  margin-top: 4rem;
 }
