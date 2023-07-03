@@ -17,13 +17,35 @@
 
 .container {
   position: relative;
+  margin-top: 2rem;
 }
 
-.interactiveWrapper {
+.center {
   display: flex;
   justify-content: center;
 }
 
 .sectionHeading {
   margin-top: 4rem;
+}
+
+figure {
+  border: 1px solid black;
+  width: 500px;
+}
+
+figcaption {
+  background-color: #222;
+  color: #fff;
+  font: italic smaller sans-serif;
+  padding: 3px;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}
+
+p {
+  padding-top: 1rem;
 }

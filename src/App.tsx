@@ -9,6 +9,8 @@ import { snippets } from "./snippets";
 import { PointInTriangle } from "./components/PointInTriangle";
 import { PointInTriangle2 } from "./components/PointInTriangle2";
 import { Barycentric } from "./components/Barycentric";
+import redTriangle from "./images/redTriangle.png";
+import { BoundingBox } from "./components/BoundingBox";
 
 function App() {
   return (
@@ -28,7 +30,7 @@ function App() {
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.edgeFunc}
         </SyntaxHighlighter>
-        <div className="interactiveWrapper">
+        <div className="center">
           <SignedArea />
         </div>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
@@ -41,23 +43,66 @@ function App() {
           {snippets.pointInTriangle1}
           {snippets.pointInTriangle1b}
         </SyntaxHighlighter>
-        <div className="interactiveWrapper">
+        <div className="center">
           <PointInTriangle />
         </div>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.pointInTriangle2}
         </SyntaxHighlighter>
-        <div className="interactiveWrapper">
+        <div className="center">
           <PointInTriangle2 />
         </div>
-        <br />
+
+        <Typography className="sectionHeading" variant="h5">
+          Drawing a triangle
+        </Typography>
+        <Typography variant="body1">
+          Now let's get to actually drawing the triangle. All we need to do is
+          loop through all the pixels in the canvas and calculate the signed
+          areas of each of our inner triangles (ABP, BCP, CAP). If all of the
+          signed areas are positive, then the point is inside the triangle.
+        </Typography>
+        <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+          {snippets.drawTriangle1}
+        </SyntaxHighlighter>
+        <div className="center">
+          <figure>
+            <img src={redTriangle} alt="red triangle" />
+            <figcaption>Our beautiful triangle</figcaption>
+          </figure>
+        </div>
+
+        <Typography className="sectionHeading" variant="h5">
+          An easy speedup
+        </Typography>
+        <Typography variant="body1">
+          While our current implementation works, it's not very efficient. We
+          can speed it up very easily by only looping through the pixels inside
+          the bounding box of the triangle. Depending on the size of the
+          triangle, this can be a huge speedup.
+        </Typography>
+        <div className="center">
+          <BoundingBox />
+        </div>
+        <Typography variant="body1">
+          As you can see from the above demo, if the triangle is small (which
+          they generally are when rendering complex 3D models), we can save
+          quite a bit of processing time.
+        </Typography>
+        <Typography variant="body1">
+          Fortunately, calculating the bounding box of a triangle is very easy:
+        </Typography>
+        <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+          {snippets.boundingBox}
+        </SyntaxHighlighter>
+
         <Typography className="sectionHeading" variant="h5">
           Getting barycentric coordinates
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.barycentric1}
         </SyntaxHighlighter>
-        <div className="interactiveWrapper">
+        <div className="center">
           <Normalized />
         </div>
         <br />
@@ -68,13 +113,13 @@ function App() {
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.barycentric2}
         </SyntaxHighlighter>
-        <div className="interactiveWrapper">
+        <div className="center">
           <Barycentric />
         </div>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.barycentric3}
         </SyntaxHighlighter>
-        <div className="interactiveWrapper">
+        <div className="center">
           <Interpolate />
         </div>
       </div>

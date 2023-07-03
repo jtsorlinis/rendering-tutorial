@@ -36,6 +36,46 @@ if (ABP > 0 && BCP > 0 && CAP > 0) {
   // Point is inside the triangle ABC
 }`;
 
+const drawTriangle1 = `const P = new Point(0, 0);
+
+// Loop through all the pixels of the canvas
+for (P.y = 0; P.y < canvas.height; P.y++) {
+  for (P.x = 0; P.x < canvas.width; P.x++) {
+    // Get our signed areas
+    const ABP = signedArea(A, B, P);
+    const BCP = signedArea(B, C, P);
+    const CAP = signedArea(C, A, P);
+
+    // If all the signed areas are positive, the point is inside the triangle
+    if (ABP >= 0 && BCP >= 0 && CAP >= 0) {
+      // Draw the pixel
+      setPixel(P.x, P.y, "red");
+    }
+  }
+}`;
+
+const boundingBox = `// Get the bounding box of the triangle
+const minX = Math.min(A.x, B.x, C.x);
+const minY = Math.min(A.y, B.y, C.y);
+const maxX = Math.max(A.x, B.x, C.x);
+const maxY = Math.max(A.y, B.y, C.y);
+
+// Loop through all the pixels of the bounding box
+for (P.y = minY; P.y < maxY; P.y++) {
+  for (P.x = minX; P.x < maxX; P.x++) {
+    // Get our signed areas
+    const ABP = signedArea(A, B, P);
+    const BCP = signedArea(B, C, P);
+    const CAP = signedArea(C, A, P);
+
+    // If all the signed areas are positive, the point is inside the triangle
+    if (ABP >= 0 && BCP >= 0 && CAP >= 0) {
+      // Draw the pixel
+      setPixel(P.x, P.y, "red");
+    }
+  }
+}`;
+
 const barycentric1 = `
 const ABP = signedArea(A, B, P);
 
@@ -71,6 +111,8 @@ export const snippets = {
   pointInTriangle1,
   pointInTriangle1b,
   pointInTriangle2,
+  drawTriangle1,
+  boundingBox,
   barycentric1,
   barycentric2,
   barycentric3,
