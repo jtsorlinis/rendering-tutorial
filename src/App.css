@@ -3,3 +3,18 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+.stage {
+  border: 1px solid black;
+}
+
+.resetButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+}

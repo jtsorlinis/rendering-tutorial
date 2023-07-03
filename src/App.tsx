@@ -1,7 +1,8 @@
 import "./App.css";
 import { Link, Typography } from "@mui/material";
-import { Barycentric } from "./components/Barycentric/Barycentric";
-import { SignedArea } from "./components/SignedArea/SignedArea";
+import { Barycentric } from "./components/Barycentric";
+import { SignedArea } from "./components/SignedArea";
+import { EdgeFunc } from "./components/EdgeFunc";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Typography variant="h5">
         Determining whether a point is inside a triangle
       </Typography>
+      <EdgeFunc />
       <br />
       <Typography variant="h5">Interpolating attributes</Typography>
       <Typography variant="body1">
