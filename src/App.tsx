@@ -1,8 +1,14 @@
 import "./App.css";
 import { Link, Typography } from "@mui/material";
-import { Barycentric } from "./components/Barycentric";
+import { Interpolate } from "./components/Interpolate";
 import { SignedArea } from "./components/SignedArea";
-import { EdgeFunc } from "./components/EdgeFunc";
+import { Normalized } from "./components/Normalized";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { snippets } from "./snippets";
+import { PointInTriangle } from "./components/PointInTriangle";
+import { PointInTriangle2 } from "./components/PointInTriangle2";
+import { Barycentric } from "./components/Barycentric";
 
 function App() {
   return (
@@ -12,21 +18,43 @@ function App() {
         By <Link href="https://github.com/jtsorlinis">Jason Tsorlinis</Link>
       </Typography>
       <br />
-      <Typography variant="h5">Area of a triangle</Typography>
+      <Typography variant="h5">Area of a triangle (Edge functions)</Typography>
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {snippets.edgeFunc}
+      </SyntaxHighlighter>
       <SignedArea />
       <Typography variant="body1">
-        <p>The area of a triangle is given by the following formula:</p>
+        The area of a triangle is given by the following formula:
       </Typography>
       <Typography variant="h5">
         Determining whether a point is inside a triangle
       </Typography>
-      <EdgeFunc />
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {snippets.pointInTriangle1}
+        {snippets.pointInTriangle1b}
+      </SyntaxHighlighter>
+      <PointInTriangle />
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {snippets.pointInTriangle2}
+      </SyntaxHighlighter>
+      <PointInTriangle2 />
       <br />
-      <Typography variant="h5">Interpolating attributes</Typography>
-      <Typography variant="body1">
-        <p>bla bla bla</p>
-      </Typography>
+      <Typography variant="h5">Getting barycentric coordinates</Typography>
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {snippets.barycentric1}
+      </SyntaxHighlighter>
+      <Normalized />
+      <br />
+      <Typography variant="h5">Putting it all together</Typography>
+      <Typography variant="body1">bla bla bla</Typography>
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {snippets.barycentric2}
+      </SyntaxHighlighter>
       <Barycentric />
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {snippets.barycentric3}
+      </SyntaxHighlighter>
+      <Interpolate />
     </>
   );
 }

@@ -11,12 +11,11 @@ const p0 = { x: pad, y: height - pad };
 const p1 = { x: width / 2, y: pad };
 const p2 = { x: width - pad, y: height - pad };
 
-export const Barycentric = () => {
+export const PointInTriangle = () => {
   const [dot, setDot] = useState<Point>(midPoint(p0, p1, p2));
   const signedArea = edgeFunction(p0, p1, p2);
-  const bcu = edgeFunction(p1, p2, dot) / signedArea;
-  const bcv = edgeFunction(p2, p0, dot) / signedArea;
-  const bcw = edgeFunction(p0, p1, dot) / signedArea;
+  const edgeAB = edgeFunction(p0, p1, dot);
+  const bcw = edgeAB / signedArea;
 
   return (
     <div className="container" style={{ width: width }}>
@@ -32,34 +31,20 @@ export const Barycentric = () => {
       <Stage width={width} height={height} className="stage">
         <Layer>
           <Text
-            fill={bcu > 0 ? "black" : "red"}
-            text={`Weight A: ${bcu.toFixed(3)}`}
+            fill={bcw > 0 ? "black" : "red"}
+            text={`Signed area ABP: ${Math.floor(edgeAB)}`}
             fontSize={16}
             x={10}
             y={10}
-          />
-          <Text
-            fill={bcv > 0 ? "black" : "red"}
-            text={`Weight B: ${bcv.toFixed(3)}`}
-            fontSize={16}
-            x={10}
-            y={30}
-          />
-          <Text
-            fill={bcw > 0 ? "black" : "red"}
-            text={`Weight C: ${bcw.toFixed(3)}`}
-            fontSize={16}
-            x={10}
-            y={50}
           />
           {/* Main triangle */}
           <Shape
             sceneFunc={(context, shape) => {
               context.beginPath();
-              context.moveTo(p0.x, p0.y);
-              context.lineTo(p1.x, p1.y);
+              context.moveTo(p1.x, p1.y);
+              context.setLineDash([5, 5]);
               context.lineTo(p2.x, p2.y);
-              context.closePath();
+              context.lineTo(p0.x, p0.y);
               context.fillStrokeShape(shape);
             }}
             stroke={"black"}
@@ -68,36 +53,7 @@ export const Barycentric = () => {
           <Text text="A" fontSize={16} x={p0.x - 16} y={p0.y} />
           <Text text="B" fontSize={16} x={p1.x - 5} y={p1.y - 20} />
           <Text text="C" fontSize={16} x={p2.x + 5} y={p2.y} />
-          {/* BC U */}
-          <Shape
-            sceneFunc={(context, shape) => {
-              context.beginPath();
-              context.lineTo(p1.x, p1.y);
-              context.lineTo(p2.x, p2.y);
-              context.lineTo(dot.x, dot.y);
-              context.closePath();
-              context.fillStrokeShape(shape);
-            }}
-            stroke={"black"}
-            fill="black"
-            opacity={bcu > 0 ? bcu : 0}
-            strokeWidth={1}
-          />
-          {/* BC V */}
-          <Shape
-            sceneFunc={(context, shape) => {
-              context.beginPath();
-              context.moveTo(p2.x, p2.y);
-              context.lineTo(p0.x, p0.y);
-              context.lineTo(dot.x, dot.y);
-              context.closePath();
-              context.fillStrokeShape(shape);
-            }}
-            stroke={"black"}
-            fill="black"
-            opacity={bcv > 0 ? bcv : 0}
-            strokeWidth={1}
-          />
+
           {/* BC W */}
           <Shape
             sceneFunc={(context, shape) => {
@@ -109,8 +65,7 @@ export const Barycentric = () => {
               context.fillStrokeShape(shape);
             }}
             stroke={"black"}
-            fill="black"
-            opacity={bcw > 0 ? bcw : 0}
+            fill={bcw > 0 ? "green" : "red"}
             strokeWidth={1}
           />
           {/* Draggable dot */}
@@ -125,6 +80,7 @@ export const Barycentric = () => {
               setDot(mousePos);
             }}
           />
+
           <Text text="P" fontSize={16} x={dot.x + 8} y={dot.y - 6} />
         </Layer>
       </Stage>

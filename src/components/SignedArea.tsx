@@ -1,4 +1,4 @@
-import { Stage, Layer, Shape, Circle, Text, Rect } from "react-konva";
+import { Stage, Layer, Shape, Circle, Text } from "react-konva";
 import { Button } from "@mui/material";
 import { Point, edgeFunction } from "./utils";
 import { useState } from "react";
@@ -16,9 +16,6 @@ export const SignedArea = () => {
   const [p1, setP1] = useState<Point>(p1start);
   const [p2, setP2] = useState<Point>(p2start);
   const signedArea = edgeFunction(p0, p1, p2);
-  const sortedY = [p0, p1, p2].sort((a, b) => a.y - b.y);
-  const base = Math.abs(sortedY[2].x - sortedY[1].x);
-  const triHeight = Math.max(p0.y, p1.y, p2.y) - Math.min(p0.y, p1.y, p2.y);
 
   return (
     <div className="container" style={{ width: width }}>
