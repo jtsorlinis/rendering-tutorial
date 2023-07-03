@@ -10,6 +10,7 @@ import { PointInTriangle } from "./components/PointInTriangle";
 import { PointInTriangle2 } from "./components/PointInTriangle2";
 import { Barycentric } from "./components/Barycentric";
 import redTriangle from "./images/redTriangle.png";
+import interpolatedTriangle from "./images/interpolatedTriangle.png";
 import { BoundingBox } from "./components/BoundingBox";
 
 function App() {
@@ -121,6 +122,12 @@ function App() {
         </SyntaxHighlighter>
         <div className="center">
           <Interpolate />
+        </div>
+        <div className="center">
+          <figure>
+            <img src={interpolatedTriangle} alt="triangle" />
+            <figcaption>Interpolation is so pretty</figcaption>
+          </figure>
         </div>
       </div>
     </>
