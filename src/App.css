@@ -6,6 +6,7 @@
 
 .stage {
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 .resetButton {
@@ -29,6 +30,10 @@
   margin-top: 4rem;
 }
 
+.subHeading {
+  margin-top: 1rem;
+}
+
 figure {
   border: 1px solid black;
   width: 500px;
@@ -48,4 +53,8 @@ img {
 
 p {
   padding-top: 1rem;
+}
+
+pre {
+  border-radius: 5px;
 }

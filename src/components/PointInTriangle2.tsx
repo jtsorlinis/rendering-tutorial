@@ -1,11 +1,11 @@
 import { Stage, Layer, Shape, Circle, Text } from "react-konva";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { Point, midPoint, edgeFunction } from "./utils";
+import { Point, midPoint, edgeFunction, dragProps } from "./utils";
 
 const width = 500;
 const height = 500;
-const pad = 50;
+const pad = 52;
 
 const p0 = { x: pad, y: height - pad };
 const p1 = { x: width / 2, y: pad };
@@ -123,7 +123,9 @@ export const PointInTriangle2 = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setDot(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
 
           <Text text="P" fontSize={16} x={dot.x + 8} y={dot.y - 6} />

@@ -1,7 +1,7 @@
 import { Stage, Layer, Shape, Circle, Text } from "react-konva";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { Point, midPoint, edgeFunction } from "./utils";
+import { Point, midPoint, edgeFunction, dragProps } from "./utils";
 
 const width = 500;
 const height = 500;
@@ -123,7 +123,9 @@ export const Barycentric = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setDot(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
           <Text text="P" fontSize={16} x={dot.x + 8} y={dot.y - 6} />
         </Layer>

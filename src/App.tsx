@@ -91,13 +91,18 @@ function App() {
           quite a bit of processing time.
         </Typography>
         <Typography variant="body1">
-          Fortunately, calculating the bounding box of a triangle is very easy:
+          Fortunately, calculating the bounding box of a triangle is very easy,
+          we just need to get the minimum and maximum x and y values of the
+          triangle's vertices:
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.boundingBox}
         </SyntaxHighlighter>
 
-        <Typography className="sectionHeading" variant="h5">
+        <Typography className="sectionHeading" variant="h4">
+          Interpolation
+        </Typography>
+        <Typography className="subHeading" variant="h5">
           Getting barycentric coordinates
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
@@ -108,7 +113,7 @@ function App() {
         </div>
         <br />
         <Typography className="sectionHeading" variant="h5">
-          Putting it all together
+          Vertex weights
         </Typography>
         <Typography variant="body1">bla bla bla</Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>

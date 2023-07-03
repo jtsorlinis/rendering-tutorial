@@ -1,6 +1,6 @@
 import { Stage, Layer, Shape, Circle, Text, Rect } from "react-konva";
 import { Button } from "@mui/material";
-import { Point } from "./utils";
+import { Point, dragProps } from "./utils";
 import { useState } from "react";
 
 const width = 500;
@@ -94,7 +94,9 @@ export const BoundingBox = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP0(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
           <Circle
             draggable
@@ -105,7 +107,9 @@ export const BoundingBox = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP1(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
           <Circle
             draggable
@@ -116,7 +120,9 @@ export const BoundingBox = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP2(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
         </Layer>
       </Stage>

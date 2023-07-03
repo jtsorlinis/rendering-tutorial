@@ -1,6 +1,6 @@
 import { Stage, Layer, Shape, Circle, Text } from "react-konva";
 import { Button } from "@mui/material";
-import { Point, edgeFunction } from "./utils";
+import { Point, dragProps, edgeFunction } from "./utils";
 import { useState } from "react";
 
 const width = 500;
@@ -90,7 +90,9 @@ export const SignedArea = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP0(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
           <Circle
             draggable
@@ -101,7 +103,9 @@ export const SignedArea = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP1(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
           <Circle
             draggable
@@ -112,7 +116,9 @@ export const SignedArea = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP2(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
         </Layer>
       </Stage>

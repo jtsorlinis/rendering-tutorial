@@ -28,3 +28,21 @@ export const rgba = (
   }
   return `rgb(${r}, ${g}, ${b})`;
 };
+
+export const mouseOver = () => {
+  document.body.style.cursor = "grab";
+};
+
+export const mouseOut = () => {
+  document.body.style.cursor = "default";
+};
+
+export const dragEnd = () => {
+  document.body.style.cursor = "grab";
+};
+
+export const dragProps = {
+  onMouseOver: mouseOver,
+  onMouseOut: mouseOut,
+  onDragEnd: dragEnd,
+};

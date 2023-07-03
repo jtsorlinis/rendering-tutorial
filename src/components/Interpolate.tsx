@@ -1,7 +1,7 @@
 import { Stage, Layer, Shape, Circle, Text, Rect } from "react-konva";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { Point, midPoint, edgeFunction, rgba } from "./utils";
+import { Point, midPoint, edgeFunction, rgba, dragProps } from "./utils";
 
 const width = 500;
 const height = 500;
@@ -123,7 +123,9 @@ export const Interpolate = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setDot(mousePos);
+              document.body.style.cursor = "grabbing";
             }}
+            {...dragProps}
           />
           {/* Colour at P */}
           {bcu >= 0 && bcv >= 0 && bcw >= 0 && (
