@@ -44,8 +44,14 @@ export const Barycentric = () => {
   const bcw = edgeFunction(p0, p1, dot) / signedArea;
 
   return (
-    <>
-      <Button variant="contained" color="primary" size="small">
+    <div className="container">
+      <Button
+        className="resetButton"
+        variant="contained"
+        color="primary"
+        size="small"
+        onClick={() => setDot(midPoint(p0, p1, p2))}
+      >
         Reset
       </Button>
       <Stage width={width} height={height} className="stage">
@@ -147,8 +153,8 @@ export const Barycentric = () => {
           {/* Colour at P */}
           {bcu >= 0 && bcv >= 0 && bcw >= 0 && (
             <Rect
-              x={width - 50}
-              y={10}
+              x={10}
+              y={80}
               width={40}
               height={40}
               fill={rgba(bcu, bcv, bcw)}
@@ -157,6 +163,6 @@ export const Barycentric = () => {
           <Text text="P" fontSize={16} x={dot.x + 8} y={dot.y - 6} />
         </Layer>
       </Stage>
-    </>
+    </div>
   );
 };
