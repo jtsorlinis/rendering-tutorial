@@ -15,6 +15,7 @@ import windingOrder from "./images/windingOrder.png";
 import { BoundingBox } from "./components/BoundingBox";
 import { MathJax } from "better-react-mathjax";
 import { EdgeFunction } from "./components/EdgeFunction";
+import { EdgeRight } from "./components/EdgeRight";
 
 function App() {
   return (
@@ -149,8 +150,18 @@ function App() {
           left side of the edge AB. This is why we call it an edge function.
         </Typography>
         <Typography variant="body1">
-          Remember, all that matters is whether the points are clockwise or not.
-          So the following are all the same:
+          One thing to note is that the "right side" of an edge is relative to
+          its direction. So if an edge is pointing downwards, then the right
+          side would actually be on the left. Try dragging the slider in the
+          below demo to see what I mean.
+        </Typography>
+        <div className="center">
+          <EdgeRight />
+        </div>
+        <br />
+        <Typography variant="body1">
+          Remember, the only important thing when ordering the points is that
+          they are in a clockwise order. So the following are all the same:
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.pointInTriangle1b}

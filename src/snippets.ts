@@ -93,6 +93,9 @@ const ABP = edgeFunction(A, B, P);
 const weightA = BCP / ABC;
 const weightB = CAP / ABC;
 const weightC = ABP / ABC;
+
+// These will always add up to 1
+weightA + weightB + weightC === 1;
 `;
 
 const barycentric3 = `// We can interpolate attributes using the barycentric coordinates
