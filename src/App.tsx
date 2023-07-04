@@ -110,10 +110,10 @@ function App() {
           Back to business
         </Typography>
         <Typography variant="body1">
-          Why is it called an edge function? Let's replace point C with a point
-          P, so we have an edge AB, and a point P. The following triangle is
-          exactly the same as the triangle ABC, but we're only interested in the
-          edge AB and the point P.
+          So, why is it called an edge function? Let's replace point C with a
+          point P, so we have an edge AB, and a point P. The following triangle
+          is exactly the same as the triangle ABC, but we're only interested in
+          the edge AB and the point P.
           <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
             {`const ABP = edgeFunction(A, B, P);`}
           </SyntaxHighlighter>
@@ -128,31 +128,73 @@ function App() {
           right side of the edge AB, and negative when the point P is on the
           left side of the edge AB. This is why we call it an edge function.
         </Typography>
+        <Typography variant="body1">
+          Remember, all that matters is whether the points are clockwise or not.
+          So the following are all the same:
+        </Typography>
+        <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+          {snippets.pointInTriangle1b}
+        </SyntaxHighlighter>
 
         <Typography className="sectionHeading" variant="h5">
           Determining whether a point is inside a triangle
         </Typography>
+        <Typography variant="body1">
+          So this is what we've been building up to. Now that we know how to
+          determine whether a point is on the left or right side of an edge, we
+          can use that to determine which side of a triangle's edge point P is.
+          We're doing the same thing as above, but making P a separate point on
+          our triangle ABC.
+        </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.pointInTriangle1}
-          {snippets.pointInTriangle1b}
         </SyntaxHighlighter>
         <div className="center">
           <PointInTriangle />
         </div>
+        <Typography variant="body1">
+          Now all we need to do is repeat this for each edge of the triangle.
+          Remember our edges need to be in clockwise order, so we can just go
+          clockwise around the triangle:
+          <ul>
+            <li>Edge 1: A -{">"} B</li>
+            <li>Edge 2: B -{">"} C</li>
+            <li>Edge 3: C -{">"} A</li>
+          </ul>
+        </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.pointInTriangle2}
         </SyntaxHighlighter>
         <div className="center">
           <PointInTriangle2 />
         </div>
+        <Typography variant="body1">
+          You'll notice if you play around with the above demo that if the point
+          P is inside the triangle, then the edge functions will all be
+          positive. This is because the point P is on the right side of all
+          three edges of our triangle. If the point P is outside the triangle,
+          then at least one of the edge functions will be negative. So all we
+          need to do is check that all of the edge functions are positive:
+        </Typography>
+        <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+          {snippets.pointInTriangle3}
+        </SyntaxHighlighter>
+        <Typography variant="body1">
+          <b>
+            Congratulations! You can now rasterize triangles! <br />
+            This was the hardest part so if you're still following the rest
+            should be easy
+          </b>
+        </Typography>
         <Typography className="sectionHeading" variant="h5">
-          Drawing a triangle
+          Actually drawing our triangle
         </Typography>
         <Typography variant="body1">
           Now let's get to actually drawing the triangle. All we need to do is
-          loop through all the pixels in the canvas and calculate the signed
-          areas of each of our inner triangles (ABP, BCP, CAP). If all of the
-          signed areas are positive, then the point is inside the triangle.
+          loop through all the pixels in the canvas and calculate our edge
+          function for each edge (AB, BC, CA) in relation to the current pixel
+          (P). If all of our edge functions are positive, then the pixel is
+          inside the triangle.
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.drawTriangle1}
@@ -188,8 +230,17 @@ function App() {
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.boundingBox}
         </SyntaxHighlighter>
+        <Typography variant="body1">
+          <b>
+            That's it! We can now rasterize and draw triangles to the screen.
+            <br />
+            <br />
+            But there's another really cool thing we can do with edge
+            functions...
+          </b>
+        </Typography>
         <Typography className="sectionHeading" variant="h4">
-          Interpolation
+          Some more magic
         </Typography>
         <Typography className="subHeading" variant="h5">
           Getting barycentric coordinates

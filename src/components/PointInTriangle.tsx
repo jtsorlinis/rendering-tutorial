@@ -32,7 +32,7 @@ export const PointInTriangle = () => {
         <Layer>
           <Text
             fill={bcw > 0 ? "black" : "red"}
-            text={`Signed area ABP: ${Math.floor(edgeAB)}`}
+            text={`Edge function ABP: ${Math.floor(edgeAB)}`}
             fontSize={16}
             x={10}
             y={10}

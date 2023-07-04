@@ -20,11 +20,6 @@ export const EdgeFunction = () => {
   const [p2, setP2] = useState<Point>(p2start);
   const signedArea = edgeFunction(p0, p1, p2);
 
-  const center = {
-    x: (p0.x + p1.x + p2.x) / 3 - 24,
-    y: (p0.y + p1.y + p2.y) / 3 - 24,
-  };
-
   return (
     <div className="container" style={{ width: width }}>
       <Button
@@ -77,8 +72,8 @@ export const EdgeFunction = () => {
             pointerLength={15}
             dash={[10, 5]}
           />
-          <Text text={`A`} fontSize={16} x={p0.x - 16} y={p0.y + 8} />
-          <Text text={`B`} fontSize={16} x={p1.x - 5} y={p1.y - 20} />
+          <Text text={`A`} fontSize={16} x={p0.x - 12} y={p0.y + 5} />
+          <Text text={`B`} fontSize={16} x={p1.x} y={p1.y - 20} />
           <Text text={`P`} fontSize={16} x={p2.x + 5} y={p2.y + 8} />
 
           {/* Draggable points */}

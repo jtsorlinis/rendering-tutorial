@@ -7,15 +7,15 @@ const ABC = edgeFunction(A, B, C);`;
 
 const backfaceCulling = `const ABC = edgeFunction(A, B, C);
 
-// If the signed area is negative, it's a back facing triangle and we can cull it
+// If our edge function (signed area x2) is negative, it's a back facing triangle and we can cull it
 if (ABC < 0) {
   // Don't bother drawing this triangle
 }`;
 
-const pointInTriangle1 = `// Get the signed area of the triangle ABP
+const pointInTriangle1 = `// Calculate our edge function for AB and P
 const ABP = edgeFunction(A, B, P);
 
-if (ABP > 0) {
+if (ABP >= 0) {
   // Point is inside the edge AB
 }`;
 
@@ -26,13 +26,12 @@ const PAB = edgeFunction(P, A, B);
 
 ABP === BPA === PAB;`;
 
-const pointInTriangle2 = `// Get the signed area of all three triangles that make up ABC 
-// (Remember clockwise ordering)
+const pointInTriangle2 = `// Calculate our edge function for all three edges of the triangle ABC
 const ABP = edgeFunction(A, B, P); 
 const BCP = edgeFunction(B, C, P);
-const CAP = edgeFunction(C, A, P);
+const CAP = edgeFunction(C, A, P);`;
 
-if (ABP > 0 && BCP > 0 && CAP > 0) {
+const pointInTriangle3 = `if (ABP >= 0 && BCP >= 0 && CAP >= 0) {
   // Point is inside the triangle ABC
 }`;
 
@@ -41,12 +40,12 @@ const drawTriangle1 = `const P = new Point(0, 0);
 // Loop through all the pixels of the canvas
 for (P.y = 0; P.y < canvas.height; P.y++) {
   for (P.x = 0; P.x < canvas.width; P.x++) {
-    // Get our signed areas
+    // Calculate our edge functions
     const ABP = edgeFunction(A, B, P);
     const BCP = edgeFunction(B, C, P);
     const CAP = edgeFunction(C, A, P);
 
-    // If all the signed areas are positive, the point is inside the triangle
+    // If all the edge functions are positive, the point is inside the triangle
     if (ABP >= 0 && BCP >= 0 && CAP >= 0) {
       // Draw the pixel
       setPixel(P.x, P.y, "red");
@@ -63,12 +62,12 @@ const maxY = Math.max(A.y, B.y, C.y);
 // Loop through all the pixels of the bounding box
 for (P.y = minY; P.y < maxY; P.y++) {
   for (P.x = minX; P.x < maxX; P.x++) {
-    // Get our signed areas
+    // Calculate our edge functions
     const ABP = edgeFunction(A, B, P);
     const BCP = edgeFunction(B, C, P);
     const CAP = edgeFunction(C, A, P);
 
-    // If all the signed areas are positive, the point is inside the triangle
+    // If all the edge functions are positive, the point is inside the triangle
     if (ABP >= 0 && BCP >= 0 && CAP >= 0) {
       // Draw the pixel
       setPixel(P.x, P.y, "red");
@@ -76,16 +75,16 @@ for (P.y = minY; P.y < maxY; P.y++) {
   }
 }`;
 
-const barycentric1 = `
+const barycentric1 = `// Double the signed area of the triangle ABP
 const ABP = edgeFunction(A, B, P);
 
-// Total signed area of the triangle ABC
+// Double the signed area of the triangle ABC
 const ABC = edgeFunction(A, B, C);
 
-// We can divide ABP by the total area (ABC) to get the weight of the point P towards point C
+// We can divide ABP by the total area (ABC) to get the normalized weight of the point P towards point C
 const normalized = ABP / ABC;`;
 
-const barycentric2 = `// Get the signed area of all three triangles that make up ABC (Remember clockwise ordering)
+const barycentric2 = `// Get double the signed area of all three triangles that make up ABC
 const BCP = edgeFunction(B, C, P);
 const CAP = edgeFunction(C, A, P);
 const ABP = edgeFunction(A, B, P);
@@ -111,6 +110,7 @@ export const snippets = {
   pointInTriangle1,
   pointInTriangle1b,
   pointInTriangle2,
+  pointInTriangle3,
   drawTriangle1,
   boundingBox,
   barycentric1,

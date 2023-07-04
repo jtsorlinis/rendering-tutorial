@@ -32,21 +32,21 @@ export const PointInTriangle2 = () => {
         <Layer>
           <Text
             fill={edgeBC > 0 ? "black" : "red"}
-            text={`Signed area BCP: ${Math.floor(edgeBC)}`}
+            text={`Edge Function BCP: ${Math.floor(edgeBC)}`}
             fontSize={16}
             x={10}
             y={10}
           />
           <Text
             fill={edgeCA > 0 ? "black" : "red"}
-            text={`Signed area BCP: ${Math.floor(edgeCA)}`}
+            text={`Edge Function CAP: ${Math.floor(edgeCA)}`}
             fontSize={16}
             x={10}
             y={30}
           />
           <Text
             fill={edgeAB > 0 ? "black" : "red"}
-            text={`Signed area ABP: ${Math.floor(edgeAB)}`}
+            text={`Edge Function ABP: ${Math.floor(edgeAB)}`}
             fontSize={16}
             x={10}
             y={50}
