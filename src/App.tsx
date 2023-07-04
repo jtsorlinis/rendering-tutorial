@@ -49,38 +49,46 @@ function App() {
         <Typography className="sectionHeading" variant="h5">
           Area of a triangle (Edge functions)
         </Typography>
-        <Typography variant="body1">
-          Usually when you think of the area of a triangle, you think of the
-          following formula:
+        <Typography variant="body1" component={"div"}>
+          <p>
+            Usually when you think of the area of a triangle, you think of the
+            following formula:
+          </p>
           <MathJax>{"\\[Area = \\frac{Base*Height}{2}\\]"}</MathJax>
-          While this formula works great for calculating the area of a triangle,
-          it requires we know the base and height of the triangle. What if we
-          don't know the base and height? What if we only know the coordinates
-          of the vertices of the triangle? Luckily there's a formula for that
-          called the{" "}
-          <Link href="https://en.wikipedia.org/wiki/Shoelace_formula">
-            Shoelace formula
-          </Link>
-          . The shoelace formula lets us calculate the area of a triangle given
-          the coordinates of its vertices. The formula is as follows:
+          <p>
+            While this formula works great for calculating the area of a
+            triangle, it requires we know the base and height of the triangle.
+            What if we don't know the base and height? What if we only know the
+            coordinates of the vertices of the triangle? Luckily there's a
+            formula for that called the{" "}
+            <Link href="https://en.wikipedia.org/wiki/Shoelace_formula">
+              Shoelace formula
+            </Link>
+            . The shoelace formula lets us calculate the area of a triangle
+            given the coordinates of its vertices. The formula is as follows:
+          </p>
           <MathJax>
             {
               "\\[Area = \\frac{1}{2}\\lvert(x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)\\rvert\\]"
             }
           </MathJax>
-          So now we have a formula for calculating the area of a triangle, but
-          how do we use it to determine whether a point is inside a triangle? If
-          you notice the formula above has absolute value bars around it. This
-          is because the area of a triangle should always be positive. If we
-          remove the absolute value bars, then sometimes we will get a negative
-          area. This is called a signed area.
+          <p>
+            So now we have a formula for calculating the area of a triangle, but
+            how do we use it to determine whether a point is inside a triangle?
+            If you notice the formula above has absolute value bars around it.
+            This is because the area of a triangle should always be positive. If
+            we remove the absolute value bars, then sometimes we will get a
+            negative area. This is called a signed area.
+          </p>
           <MathJax>
             {
               "\\[SignedArea = \\frac{1}{2}((x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a))\\]"
             }
           </MathJax>
-          What does a negative area mean though? It all comes down to how the
-          points of our triangle (ABC) are ordered.
+          <p>
+            What does a negative area mean though? It all comes down to how the
+            points of our triangle (ABC) are ordered.
+          </p>
           <ul>
             <li>
               If our points are in a Clockwise order the signed area will be
@@ -135,10 +143,10 @@ function App() {
           point P, so we have an edge AB, and a point P. The following triangle
           is exactly the same as the triangle ABC, but we're only interested in
           the edge AB and the point P.
-          <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
-            {`const ABP = edgeFunction(A, B, P);`}
-          </SyntaxHighlighter>
         </Typography>
+        <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+          {`const ABP = edgeFunction(A, B, P);`}
+        </SyntaxHighlighter>
         <div className="center">
           <EdgeFunction />
         </div>
@@ -183,10 +191,12 @@ function App() {
         <div className="center">
           <PointInTriangle />
         </div>
-        <Typography variant="body1">
-          Now all we need to do is repeat this for each edge of the triangle.
-          Remember our edges need to be in clockwise order, so we can just go
-          clockwise around the triangle:
+        <Typography variant="body1" component={"div"}>
+          <p>
+            Now all we need to do is repeat this for each edge of the triangle.
+            Remember our edges need to be in clockwise order, so we can just go
+            clockwise around the triangle:
+          </p>
           <ul>
             <li>Edge 1: A -{">"} B</li>
             <li>Edge 2: B -{">"} C</li>
