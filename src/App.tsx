@@ -160,8 +160,10 @@ function App() {
         <Typography variant="body1">
           One thing to note is that the "right side" of an edge is relative to
           its direction. So if an edge is pointing downwards, then the right
-          side would actually be on the left. Try dragging the slider in the
-          below demo to see what I mean.
+          side would actually be on the left. Think of it if you were standing
+          at point A and looking towards point B. Which direction would your
+          right be? Try dragging the slider in the below demo to see what I
+          mean.
         </Typography>
         <div className="center">
           <EdgeRight />

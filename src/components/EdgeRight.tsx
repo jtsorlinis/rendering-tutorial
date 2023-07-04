@@ -35,7 +35,7 @@ export const EdgeRight = () => {
 
   const midp0p1 = { x: (p0.x + p1.x) / 2, y: (p0.y + p1.y) / 2 };
   const p1p0 = { x: p1.x - p0.x, y: p1.y - p0.y };
-  const perp = { x: -p1p0.y / 2, y: p1p0.x / 2 };
+  const perp = { x: -p1p0.y / 1.75, y: p1p0.x / 1.75 };
   const end = { x: midp0p1.x + perp.x, y: midp0p1.y + perp.y };
 
   return (
@@ -83,6 +83,7 @@ export const EdgeRight = () => {
             stroke="black"
             pointerWidth={10}
             pointerLength={15}
+            opacity={0.2}
             dash={[10, 5]}
           />
           <Line
@@ -90,6 +91,7 @@ export const EdgeRight = () => {
             stroke="black"
             pointerWidth={10}
             pointerLength={15}
+            opacity={0.2}
             dash={[10, 5]}
           />
           <Arrow
@@ -97,9 +99,18 @@ export const EdgeRight = () => {
             stroke="red"
             fill="red"
           />
+          <Text
+            text="Right"
+            fontSize={16}
+            x={end.x}
+            y={end.y}
+            offsetY={20}
+            offsetX={60}
+            fill="red"
+            rotation={rotation + 30}
+          />
           <Text text={`A`} fontSize={16} x={p0.x - 12} y={p0.y + 5} />
           <Text text={`B`} fontSize={16} x={p1.x} y={p1.y - 20} />
-          <Text text={`P`} fontSize={16} x={p2.x + 5} y={p2.y + 8} />
         </Layer>
       </Stage>
     </div>
