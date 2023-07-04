@@ -23,9 +23,29 @@ function App() {
       <Typography variant="body1">
         By <Link href="https://github.com/jtsorlinis">Jason Tsorlinis</Link>
       </Typography>
-      <br />
       <div>
-        <Typography variant="h5">
+        <Typography className="sectionHeading" variant="h5">
+          Introduction
+        </Typography>
+        <Typography variant="body1">
+          In this tutorial we're going to learn how to rasterize a triangle.
+          I've been learning about triangle rasterization recently and found a
+          few different resources but I didn't feel like any of them explained
+          the concepts too clearly.
+        </Typography>
+        <Typography variant="body1">
+          So I thought it would be fun (and hopefully helpful) to write a
+          tutorial about it. I'm going to assume you have a basic understanding
+          of linear algebra, and have a decent grasp on programming. If you
+          don't, don't worry, I'll try to explain everything as best I can.
+        </Typography>
+        <div className="center">
+          <figure>
+            <img src={interpolatedTriangle} alt="triangle" />
+            <figcaption>Here's what we'll (hopefully) end up with</figcaption>
+          </figure>
+        </div>
+        <Typography className="sectionHeading" variant="h5">
           Area of a triangle (Edge functions)
         </Typography>
         <Typography variant="body1">
@@ -243,37 +263,107 @@ function App() {
           Some more magic
         </Typography>
         <Typography className="subHeading" variant="h5">
-          Getting barycentric coordinates
+          Normalized edge weights
+        </Typography>
+        <Typography variant="body1">
+          So our edge functions are pretty useful for determining whether a
+          point is inside a triangle, but they can also be used to determine the
+          weights of each vertex of the triangle. This is useful for things like
+          interpolating colors across the triangle.
+        </Typography>
+        <Typography variant="body1">
+          Thankfully we've already done most of the work for this. All we need
+          to do is normalize our edge functions. This is done by dividing each
+          edge function by the edge function of the whole triangle. This gives
+          us a value between 0 and 1 for each edge, which we can use as the
+          weight of each vertex.
+        </Typography>
+        <Typography variant="body1">
+          The weight of a point is calculated by calculating the normalized edge
+          function of the opposite edge. So to get the weight of point C, we
+          would use the normalized edge function of edge AB.
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.barycentric1}
         </SyntaxHighlighter>
+        <Typography variant="body1">
+          In the following example we're calculating the weight of point C by
+          calculating the edge function of edge AB, and normalizing it by
+          dividing it by the edge function of the whole triangle (ABC).
+        </Typography>
+
         <div className="center">
           <Normalized />
         </div>
         <br />
         <Typography className="sectionHeading" variant="h5">
-          Vertex weights
+          Barycentric coordinates
         </Typography>
-        <Typography variant="body1">bla bla bla</Typography>
+        <Typography variant="body1">
+          Our normalized edge function we calculated in the previous step
+          actually was a barycentric coordinate. Barycentric coordinates are
+          just our normalized edge functions. So if we have a triangle ABC, then
+          the barycentric coordinates of point P are the weights of each vertex
+          of the triangle ABC.
+        </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.barycentric2}
         </SyntaxHighlighter>
+        <Typography variant="body1">
+          Because they are normalized they will always add up to 1. So at each
+          vertex the weight of that vertex will be 1, and the weight of the
+          other vertices will be 0. In the center of the triangle all of the
+          weights will be equal at 0.333.
+        </Typography>
         <div className="center">
           <Barycentric />
         </div>
+        <Typography className="sectionHeading" variant="h5">
+          Interpolating attributes
+        </Typography>
+        <Typography variant="body1">
+          We've almost reached the end here. All that's left to do is put all
+          our newfound knowledge to use. We can use these weights to interpolate
+          any attribute we want! In the following example we use our barycentric
+          coordinates to interpolate the color for each pixel in the triangle.
+        </Typography>
+        <Typography variant="body1">
+          All we need is our 3 weights (barycentric coordinates) and the colours
+          at each vertex of the triangle. We then multiply each colour by its
+          weights and add them all together to get the interpolated colour.
+        </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.barycentric3}
         </SyntaxHighlighter>
         <div className="center">
           <Interpolate />
         </div>
+        <Typography variant="body1">
+          Here's the full code to draw our triangle with interpolated colours:
+        </Typography>
+        <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+          {snippets.final}
+        </SyntaxHighlighter>
         <div className="center">
           <figure>
             <img src={interpolatedTriangle} alt="triangle" />
-            <figcaption>Interpolation is so pretty</figcaption>
+            <figcaption>Our final triangle</figcaption>
           </figure>
         </div>
+        <Typography className="sectionHeading" variant="h5">
+          That's it! We're done!
+        </Typography>
+        <Typography variant="body1">
+          I hope you enjoyed this tutorial, and it gave you a good understanding
+          of how triangle rasterization works. One thing I didn't mention but
+          you may have noticed, is that each pixel can be calculated
+          independently, which means this algorithm is very easily parallelized.
+          And GPU's are very good at running things in parallel.
+        </Typography>
+        <Typography variant="body1">
+          If you have any questions/suggestions or want to see more, feel free
+          to drop me an <Link href="mailto:jtsorlinis@gmail.com">email</Link>.
+        </Typography>
       </div>
     </>
   );
