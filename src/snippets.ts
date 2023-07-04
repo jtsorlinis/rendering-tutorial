@@ -81,8 +81,8 @@ const ABP = edgeFunction(A, B, P);
 // Double the signed area of the triangle ABC
 const ABC = edgeFunction(A, B, C);
 
-// We can divide ABP by the total area (ABC) to get the normalized weight of the point P towards point C
-const normalized = ABP / ABC;`;
+// We can divide ABP by the total area (ABC) to get the normalised weight of the point P towards point C
+const normalised = ABP / ABC;`;
 
 const barycentric2 = `// Get double the signed area of all three triangles that make up ABC
 const BCP = edgeFunction(B, C, P);
@@ -145,7 +145,7 @@ for (P.y = minY; P.y < maxY; P.y++) {
     const BCP = edgeFunction(B, C, P);
     const CAP = edgeFunction(C, A, P);
 
-    // Normalize the edge functions by dividing by the total area to get the barycentric coordinates
+    // Normalise the edge functions by dividing by the total area to get the barycentric coordinates
     const weightA = BCP / ABC;
     const weightB = CAP / ABC;
     const weightC = ABP / ABC;

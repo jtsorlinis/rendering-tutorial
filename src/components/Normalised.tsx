@@ -11,7 +11,7 @@ const p0 = { x: pad, y: height - pad };
 const p1 = { x: width / 2, y: pad };
 const p2 = { x: width - pad, y: height - pad };
 
-export const Normalized = () => {
+export const Normalised = () => {
   const [dot, setDot] = useState<Point>(midPoint(p0, p1, p2));
   const signedArea = edgeFunction(p0, p1, p2);
   const edgeAB = edgeFunction(p0, p1, dot);

@@ -2,7 +2,7 @@ import "./App.css";
 import { Link, Typography } from "@mui/material";
 import { Interpolate } from "./components/Interpolate";
 import { SignedArea } from "./components/SignedArea";
-import { Normalized } from "./components/Normalized";
+import { Normalised } from "./components/Normalised";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { snippets } from "./snippets";
@@ -51,38 +51,39 @@ function App() {
         </Typography>
         <Typography variant="body1" component={"div"}>
           <p>
-            Usually when you think of the area of a triangle, you think of the
-            following formula:
+            Usually when you think of the area of a triangle, you probably think
+            of the following formula:
           </p>
           <MathJax>{"\\[Area = \\frac{Base*Height}{2}\\]"}</MathJax>
           <p>
             While this formula works great for calculating the area of a
             triangle, it requires we know the base and height of the triangle.
-            What if we don't know the base and height? What if we only know the
-            coordinates of the vertices of the triangle? Luckily there's a
-            formula for that called the{" "}
+            What if we don't know these values? What if we only know the
+            coordinates of the vertices of the triangle? We could always
+            calculate the base and height, but luckily there's a formula for
+            calculating the area of a triangle from the coordinates of its
+            points. This formula is called the{" "}
             <Link href="https://en.wikipedia.org/wiki/Shoelace_formula">
               Shoelace formula
             </Link>
-            . The shoelace formula lets us calculate the area of a triangle
-            given the coordinates of its vertices. The formula is as follows:
+            , and it's what we'll be using it a lot. The formula is as follows:
           </p>
           <MathJax>
             {
-              "\\[Area = \\frac{1}{2}\\lvert(x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)\\rvert\\]"
+              "\\[Area = \\lvert\\frac{(x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)}{2}\\rvert\\]"
             }
           </MathJax>
           <p>
             So now we have a formula for calculating the area of a triangle, but
             how do we use it to determine whether a point is inside a triangle?
-            If you notice the formula above has absolute value bars around it.
-            This is because the area of a triangle should always be positive. If
-            we remove the absolute value bars, then sometimes we will get a
-            negative area. This is called a signed area.
+            If you notice the formula above has absolute value bars (| |) around
+            it. This is because the area of a triangle should always be
+            positive. If we remove the absolute value bars, then sometimes we
+            will get a negative area. This is called a signed area.
           </p>
           <MathJax>
             {
-              "\\[SignedArea = \\frac{1}{2}((x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a))\\]"
+              "\\[SignedArea = \\frac{(x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)}{2}\\]"
             }
           </MathJax>
           <p>
@@ -286,7 +287,7 @@ function App() {
           Some more magic
         </Typography>
         <Typography className="subHeading" variant="h5">
-          Normalized edge weights
+          Normalised edge weights
         </Typography>
         <Typography variant="body1">
           So our edge functions are pretty useful for determining whether a
@@ -296,36 +297,36 @@ function App() {
         </Typography>
         <Typography variant="body1">
           Thankfully we've already done most of the work for this. All we need
-          to do is normalize our edge functions. This is done by dividing each
+          to do is normalise our edge functions. This is done by dividing each
           edge function by the edge function of the whole triangle. This gives
           us a value between 0 and 1 for each edge, which we can use as the
           weight of each vertex.
         </Typography>
         <Typography variant="body1">
-          The weight of a point is calculated by calculating the normalized edge
+          The weight of a point is calculated by calculating the normalised edge
           function of the opposite edge. So to get the weight of point C, we
-          would use the normalized edge function of edge AB.
+          would use the normalised edge function of edge AB.
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.barycentric1}
         </SyntaxHighlighter>
         <Typography variant="body1">
           In the following example we're calculating the weight of point C by
-          calculating the edge function of edge AB, and normalizing it by
+          calculating the edge function of edge AB, and normalising it by
           dividing it by the edge function of the whole triangle (ABC).
         </Typography>
 
         <div className="center">
-          <Normalized />
+          <Normalised />
         </div>
         <br />
         <Typography className="sectionHeading" variant="h5">
           Barycentric coordinates
         </Typography>
         <Typography variant="body1">
-          Our normalized edge function we calculated in the previous step
+          Our normalised edge function we calculated in the previous step
           actually was a barycentric coordinate. Barycentric coordinates are
-          just our normalized edge functions. So if we have a triangle ABC, then
+          just our normalised edge functions. So if we have a triangle ABC, then
           the barycentric coordinates of point P are the weights of each vertex
           of the triangle ABC.
         </Typography>
@@ -333,7 +334,7 @@ function App() {
           {snippets.barycentric2}
         </SyntaxHighlighter>
         <Typography variant="body1">
-          Because they are normalized they will always add up to 1. So at each
+          Because they are normalised they will always add up to 1. So at each
           vertex the weight of that vertex will be 1, and the weight of the
           other vertices will be 0. In the center of the triangle all of the
           weights will be equal at 0.333.
