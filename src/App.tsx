@@ -20,7 +20,7 @@ import { EdgeRight } from "./components/EdgeRight";
 function App() {
   return (
     <>
-      <Typography variant="h3">Rasterizing a triangle</Typography>
+      <Typography variant="h3">Rasterising a triangle</Typography>
       <Typography variant="body1">
         By <Link href="https://github.com/jtsorlinis">Jason Tsorlinis</Link>
       </Typography>
@@ -29,8 +29,8 @@ function App() {
           Introduction
         </Typography>
         <Typography variant="body1">
-          In this tutorial we're going to learn how to rasterize a triangle.
-          I've been learning about triangle rasterization recently and found a
+          In this tutorial we're going to learn how to rasterise a triangle.
+          I've been learning about triangle rasterisation recently and found a
           few different resources but I didn't feel like any of them explained
           the concepts too clearly.
         </Typography>
@@ -225,7 +225,7 @@ function App() {
         </SyntaxHighlighter>
         <Typography variant="body1">
           <b>
-            Congratulations! You can now rasterize triangles! <br />
+            Congratulations! You can now rasterise triangles! <br />
             This was the hardest part so if you're still following the rest
             should be easy
           </b>
@@ -276,7 +276,7 @@ function App() {
         </SyntaxHighlighter>
         <Typography variant="body1">
           <b>
-            That's it! We can now rasterize and draw triangles to the screen.
+            That's it! We can now rasterise and draw triangles to the screen.
             <br />
             <br />
             But there's another really cool thing we can do with edge
@@ -379,10 +379,11 @@ function App() {
         </Typography>
         <Typography variant="body1">
           I hope you enjoyed this tutorial, and it gave you a good understanding
-          of how triangle rasterization works. One thing I didn't mention but
+          of how triangle rasterisation works. One thing I didn't mention but
           you may have noticed, is that each pixel can be calculated
-          independently, which means this algorithm is very easily parallelized.
-          And GPU's are very good at running things in parallel.
+          independently, which means this algorithm is very easily made
+          parallel. And GPU's are very good at doing things in parallel. Go
+          figure.
         </Typography>
         <Typography variant="body1">
           If you have any questions/suggestions or want to see more, feel free

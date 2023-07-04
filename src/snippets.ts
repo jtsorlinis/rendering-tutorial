@@ -134,7 +134,7 @@ if (ABC < 0) {
   return;
 }
 
-// Initialize our point
+// Initialise our point
 const P = new Point(0, 0);
 
 // Loop through all the pixels of the bounding box
