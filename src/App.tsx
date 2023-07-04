@@ -11,8 +11,10 @@ import { PointInTriangle2 } from "./components/PointInTriangle2";
 import { Barycentric } from "./components/Barycentric";
 import redTriangle from "./images/redTriangle.png";
 import interpolatedTriangle from "./images/interpolatedTriangle.png";
+import windingOrder from "./images/windingOrder.png";
 import { BoundingBox } from "./components/BoundingBox";
 import { MathJax } from "better-react-mathjax";
+import { EdgeFunction } from "./components/EdgeFunction";
 
 function App() {
   return (
@@ -69,10 +71,19 @@ function App() {
               signed area will be negative.
             </li>
           </ul>
-          While we're at it, lets also remove the 1/2 from the formula as all we
-          care about is whether the area is positive or negative.
+          <div className="center">
+            <figure>
+              <img src={windingOrder} alt="winding order" />
+              <figcaption>Clockwise and Counterclockwise winding</figcaption>
+            </figure>
+          </div>
+          <br />
+          While we're at it, lets also remove the{" "}
+          <MathJax inline>{"\\(\\frac{1}{2}\\)"}</MathJax> from the formula as
+          all we care about is whether the area is positive or negative. This is
+          often referred to as an edge function, so let's call it that:
           <MathJax>
-            {"\\[SignedArea = (x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)\\]"}
+            {"\\[EdgeFunction = (x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)\\]"}
           </MathJax>
         </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
@@ -81,9 +92,43 @@ function App() {
         <div className="center">
           <SignedArea />
         </div>
+        <br />
+        <Typography className="subHeading" variant="h6">
+          A nifty trick
+        </Typography>
+        <Typography variant="body1">
+          Another really useful thing about knowing the winding order of a
+          triangle is that we can use it to skip drawing triangles that are
+          facing away from the camera. Drawing the back sides of objects is a
+          waste of processing power, as we can't see them anyway, so this gives
+          us an easy way to speed up our rendering.
+        </Typography>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
-          {snippets.edgeFunc2}
+          {snippets.backfaceCulling}
         </SyntaxHighlighter>
+        <Typography className="sectionHeading" variant="h6">
+          Back to business
+        </Typography>
+        <Typography variant="body1">
+          Why is it called an edge function? Let's replace point C with a point
+          P, so we have an edge AB, and a point P. The following triangle is
+          exactly the same as the triangle ABC, but we're only interested in the
+          edge AB and the point P.
+          <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+            {`const ABP = edgeFunction(A, B, P);`}
+          </SyntaxHighlighter>
+        </Typography>
+        <div className="center">
+          <EdgeFunction />
+        </div>
+        <br />
+        <Typography variant="body1">
+          Do you notice a pattern for when our edge function is positive or
+          negative? The edge function is positive when the point P is on the
+          right side of the edge AB, and negative when the point P is on the
+          left side of the edge AB. This is why we call it an edge function.
+        </Typography>
+
         <Typography className="sectionHeading" variant="h5">
           Determining whether a point is inside a triangle
         </Typography>
@@ -100,7 +145,6 @@ function App() {
         <div className="center">
           <PointInTriangle2 />
         </div>
-
         <Typography className="sectionHeading" variant="h5">
           Drawing a triangle
         </Typography>
@@ -119,7 +163,6 @@ function App() {
             <figcaption>Our beautiful triangle</figcaption>
           </figure>
         </div>
-
         <Typography className="sectionHeading" variant="h5">
           An easy speedup
         </Typography>
@@ -145,7 +188,6 @@ function App() {
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.boundingBox}
         </SyntaxHighlighter>
-
         <Typography className="sectionHeading" variant="h4">
           Interpolation
         </Typography>
