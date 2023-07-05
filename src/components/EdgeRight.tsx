@@ -3,8 +3,6 @@ import { Button, Slider } from "@mui/material";
 import { useState } from "react";
 import { Html } from "react-konva-utils";
 
-const width = 500;
-const height = 500;
 const size = 150;
 const sizeY = (size / 2) * Math.sqrt(3);
 const mid = sizeY / 3;
