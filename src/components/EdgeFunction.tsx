@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const width = 500;
 const height = 500;
-const pad = 150;
+const pad = 125;
 
 const p0start = { x: pad, y: height - pad };
 const p1start = { x: width / 2, y: pad };

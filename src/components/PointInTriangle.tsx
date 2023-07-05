@@ -76,6 +76,7 @@ export const PointInTriangle = () => {
             stroke={"black"}
             fill={bcw > 0 ? "green" : "red"}
             strokeWidth={1}
+            opacity={0.5}
           />
           {/* Draggable dot */}
           <Circle
