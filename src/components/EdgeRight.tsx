@@ -58,7 +58,7 @@ export const EdgeRight = () => {
               style: {
                 position: "absolute",
                 left: "5%",
-                top: "450px",
+                top: "460px",
                 width: "90%",
               },
             }}

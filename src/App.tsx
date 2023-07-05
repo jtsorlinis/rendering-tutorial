@@ -19,6 +19,7 @@ import windingOrder from "./images/windingOrder.png";
 import triangleEdges from "./images/triangleEdges.png";
 import rasterisation from "./images/rasterisation.png";
 import shapesFromTris from "./images/shapesFromTris.png";
+import { Rasterisation } from "./components/Rasterisation";
 
 function App() {
   return (
@@ -87,7 +88,40 @@ function App() {
           </figure>
         </div>
         <Typography className="sectionHeading" variant="h5">
-          Area of a triangle (Edge functions)
+          So how do we actually rasterize a triangle?
+        </Typography>
+        <p>
+          There's a few different ways to do this, but the way we'll be doing it
+          is by looping through all the pixels in the canvas and determining if
+          they are inside the triangle or not. If they are, we draw them. If
+          not, we don't. Simple right? Have a play around with the below demo to
+          see it in action:
+        </p>
+        <div className="center">
+          <Rasterisation />
+        </div>
+        <p>
+          The demo above is single threaded and running sequentially, but GPU's
+          usually do thousands or more in parallel. I've always found the
+          following video to be a really great way of visualising it:
+        </p>
+        <br />
+        <div className="ytWrapper">
+          <div className="ytContainer">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/-P28LKWTzrI"
+              title="YouTube video player"
+              allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            ></iframe>
+          </div>
+        </div>
+        <Typography className="sectionHeading" variant="h4">
+          Let's get Rasterising
+        </Typography>
+        <Typography className="subHeading" variant="h5">
+          Area of a triangle (aka maths)
         </Typography>
         <p>
           Usually when you think of the area of a triangle, you probably think
