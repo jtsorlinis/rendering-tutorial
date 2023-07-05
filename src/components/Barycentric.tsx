@@ -18,8 +18,11 @@ export const Barycentric = () => {
   const bcv = edgeFunction(p2, p0, dot) / signedArea;
   const bcw = edgeFunction(p0, p1, dot) / signedArea;
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -29,7 +32,13 @@ export const Barycentric = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Text
             fill={bcu > 0 ? "black" : "red"}

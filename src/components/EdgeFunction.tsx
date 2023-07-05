@@ -17,8 +17,11 @@ export const EdgeFunction = () => {
   const [p2, setP2] = useState<Point>(p2start);
   const signedArea = edgeFunction(p0, p1, p2);
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -32,11 +35,17 @@ export const EdgeFunction = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Text
             fill="black"
-            text={`Edge Function ABP: ${signedArea}`}
+            text={`Edge Function ABP: ${~~signedArea}`}
             fontSize={16}
             x={10}
             y={10}

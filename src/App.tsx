@@ -130,7 +130,9 @@ function App() {
           Usually when you think of the area of a triangle, you probably think
           of the following formula:
         </p>
-        <MathJax>{"\\[Area = \\frac{Base*Height}{2}\\]"}</MathJax>
+        <MathJax className="formula">
+          {"\\[Area = \\frac{Base*Height}{2}\\]"}
+        </MathJax>
         <p>
           While this formula works great for calculating the area of a triangle,
           it requires we know the base and height of the triangle. What if we
@@ -144,7 +146,7 @@ function App() {
           </Link>
           , and it's what we'll be using it a lot. The formula is as follows:
         </p>
-        <MathJax>
+        <MathJax className="formula">
           {
             "\\[Area = \\lvert\\frac{(x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)}{2}\\rvert\\]"
           }
@@ -157,7 +159,7 @@ function App() {
           we remove the absolute value bars, then sometimes we will get a
           negative area. This is called a signed area.
         </p>
-        <MathJax>
+        <MathJax className="formula">
           {
             "\\[SignedArea = \\frac{(x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)}{2}\\]"
           }
@@ -188,7 +190,7 @@ function App() {
         <MathJax inline>{"\\(\\frac{1}{2}\\)"}</MathJax> from the formula as all
         we care about is whether the area is positive or negative. This is often
         referred to as an edge function, so let's call it that:
-        <MathJax>
+        <MathJax className="formula">
           {"\\[EdgeFunction = (x_b-x_a)(y_c-y_a)-(y_b-y_a)(x_c-x_a)\\]"}
         </MathJax>
         <p>Here's what that looks like in code:</p>

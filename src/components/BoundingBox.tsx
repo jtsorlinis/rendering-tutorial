@@ -23,8 +23,11 @@ export const BoundingBox = () => {
   const bboxPixels = (maxX - minX) * (maxY - minY);
   const speedup = canvasPixels / bboxPixels;
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -38,7 +41,13 @@ export const BoundingBox = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Text
             text={`Canvas pixels: ${canvasPixels}`}
@@ -47,7 +56,7 @@ export const BoundingBox = () => {
             y={10}
           />
           <Text
-            text={`Bounding Box pixels: ${bboxPixels}`}
+            text={`Bounding Box pixels: ${~~bboxPixels}`}
             fontSize={16}
             x={10}
             y={30}

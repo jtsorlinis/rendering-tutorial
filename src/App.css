@@ -4,11 +4,6 @@
   padding: 2rem;
 }
 
-@media only screen and (max-width: 600px) {
-  #root {
-    padding: 1rem;
-  }
-}
 .stage {
   border: 1px solid black;
   border-radius: 5px;
@@ -24,6 +19,8 @@
 .container {
   position: relative;
   margin-top: 1rem;
+  width: 100%;
+  max-width: 500px;
 }
 
 .center {
@@ -78,4 +75,13 @@ iframe {
 .ytWrapper {
   max-width: 800px;
   margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+  #root {
+    padding: 1rem;
+  }
+  .formula {
+    font-size: 0.75rem;
+  }
 }

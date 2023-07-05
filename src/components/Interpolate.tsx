@@ -11,6 +11,9 @@ const p0 = { x: pad, y: height - pad };
 const p1 = { x: width / 2, y: pad };
 const p2 = { x: width - pad, y: height - pad };
 
+const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+const scale = canvasSize / 500;
+
 export const Interpolate = () => {
   const [dot, setDot] = useState<Point>(midPoint(p0, p1, p2));
   const signedArea = edgeFunction(p0, p1, p2);
@@ -19,7 +22,7 @@ export const Interpolate = () => {
   const bcw = edgeFunction(p0, p1, dot) / signedArea;
 
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -29,7 +32,13 @@ export const Interpolate = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Text
             fill={bcu > 0 ? "black" : "red"}

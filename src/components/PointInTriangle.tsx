@@ -17,8 +17,11 @@ export const PointInTriangle = () => {
   const edgeAB = edgeFunction(p0, p1, dot);
   const bcw = edgeAB / signedArea;
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -28,11 +31,17 @@ export const PointInTriangle = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Text
             fill={bcw > 0 ? "black" : "red"}
-            text={`Edge function ABP: ${Math.floor(edgeAB)}`}
+            text={`Edge function ABP: ${~~edgeAB}`}
             fontSize={16}
             x={10}
             y={10}

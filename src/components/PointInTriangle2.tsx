@@ -17,8 +17,11 @@ export const PointInTriangle2 = () => {
   const edgeBC = edgeFunction(p1, p2, dot);
   const edgeCA = edgeFunction(p2, p0, dot);
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -28,7 +31,13 @@ export const PointInTriangle2 = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Text
             fill={edgeBC > 0 ? "black" : "red"}

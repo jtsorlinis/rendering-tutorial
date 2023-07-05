@@ -26,8 +26,11 @@ export const FinalInterpolated = () => {
 
   const invArea = Math.abs(1 / edgeFunction(p0, p1, p2));
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -41,7 +44,13 @@ export const FinalInterpolated = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Line
             points={[p0.x, p0.y, p1.x, p1.y]}

@@ -24,8 +24,11 @@ export const Final = () => {
   const [p1, setP1] = useState<Point>(p1start);
   const [p2, setP2] = useState<Point>(p2start);
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -39,7 +42,13 @@ export const Final = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Line
             points={[p0.x, p0.y, p1.x, p1.y]}

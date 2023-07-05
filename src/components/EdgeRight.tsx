@@ -38,8 +38,11 @@ export const EdgeRight = () => {
   const perp = { x: -p1p0.y / 1.75, y: p1p0.x / 1.75 };
   const end = { x: midp0p1.x + perp.x, y: midp0p1.y + perp.y };
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -51,15 +54,21 @@ export const EdgeRight = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Html
             divProps={{
               style: {
                 position: "absolute",
                 left: "5%",
-                top: "460px",
-                width: "90%",
+                top: "92%",
+                width: "450px",
               },
             }}
           >

@@ -25,8 +25,11 @@ export const SignedArea = () => {
     y: (p0.y + p1.y + p2.y) / 3 - 24,
   };
 
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
+
   return (
-    <div className="container" style={{ width: width }}>
+    <div className="container">
       <Button
         className="resetButton"
         variant="contained"
@@ -40,14 +43,20 @@ export const SignedArea = () => {
       >
         Reset
       </Button>
-      <Stage width={width} height={height} className="stage">
+      <Stage
+        width={canvasSize}
+        height={canvasSize}
+        scaleX={scale}
+        scaleY={scale}
+        className="stage"
+      >
         <Layer>
           <Html
             divProps={{
               style: {
                 position: "absolute",
-                top: `${center.y}px`,
-                left: `${center.x}px`,
+                top: `${center.y * scale}px`,
+                left: `${center.x * scale}px`,
                 scale: 2,
                 pointerEvents: "none",
               },
@@ -69,7 +78,7 @@ export const SignedArea = () => {
             y={10}
           />
           <Text
-            text={`Edge function (2x Signed area): ${signedArea}`}
+            text={`Edge function (2x Signed area): ${~~signedArea}`}
             fontSize={16}
             x={10}
             y={30}
@@ -96,19 +105,19 @@ export const SignedArea = () => {
             fill={signedArea > 0 ? "black" : "red"}
           />
           <Text
-            text={`A (${p0.x},${p0.y})`}
+            text={`A (${~~p0.x},${~~p0.y})`}
             fontSize={16}
             x={p0.x - 16}
             y={p0.y + 8}
           />
           <Text
-            text={`B (${p1.x},${p1.y})`}
+            text={`B (${~~p1.x},${~~p1.y})`}
             fontSize={16}
             x={p1.x - 5}
             y={p1.y - 20}
           />
           <Text
-            text={`C (${p2.x},${p2.y})`}
+            text={`C (${~~p2.x},${~~p2.y})`}
             fontSize={16}
             x={p2.x + 5}
             y={p2.y + 8}
