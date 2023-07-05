@@ -113,7 +113,7 @@ function App() {
               height="100%"
               src="https://www.youtube.com/embed/-P28LKWTzrI"
               title="YouTube video player"
-              allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
             ></iframe>
           </div>
         </div>
