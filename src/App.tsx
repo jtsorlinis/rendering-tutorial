@@ -100,6 +100,7 @@ function App() {
         <div className="center">
           <Rasterisation />
         </div>
+        <br />
         <p>
           The demo above is single threaded and running sequentially, but GPU's
           usually do thousands or more in parallel. I've always found the
