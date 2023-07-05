@@ -11,7 +11,7 @@ const p0start = { x: pad, y: height - pad };
 const p1start = { x: width / 2, y: pad };
 const p2start = { x: width - pad, y: height - pad };
 
-const canvPad = 50;
+const canvPad = 0;
 const start = { x: canvPad, y: canvPad };
 const end = { x: width - canvPad, y: height - canvPad };
 
