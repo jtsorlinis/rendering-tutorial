@@ -3,8 +3,6 @@ import { Link, Typography } from "@mui/material";
 import { Interpolate } from "./components/Interpolate";
 import { SignedArea } from "./components/SignedArea";
 import { Normalised } from "./components/Normalised";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { snippets } from "./snippets";
 import { PointInTriangle } from "./components/PointInTriangle";
 import { PointInTriangle2 } from "./components/PointInTriangle2";
@@ -22,6 +20,10 @@ import shapesFromTris from "./images/shapesFromTris.png";
 import { Rasterisation } from "./components/Rasterisation";
 import { Final } from "./components/Final";
 import { FinalInterpolated } from "./components/FinalInterpolated";
+import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+SyntaxHighlighter.registerLanguage("typescript", ts);
 
 function App() {
   return (
