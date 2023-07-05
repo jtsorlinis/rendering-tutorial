@@ -4,6 +4,11 @@
   padding: 2rem;
 }
 
+@media only screen and (max-width: 600px) {
+  #root {
+    padding: 1rem;
+  }
+}
 .stage {
   border: 1px solid black;
   border-radius: 5px;
