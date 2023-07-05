@@ -11,15 +11,15 @@ const p0 = { x: pad, y: height - pad };
 const p1 = { x: width / 2, y: pad };
 const p2 = { x: width - pad, y: height - pad };
 
-const canvasSize = Math.min(document.body.clientWidth - 32, 500);
-const scale = canvasSize / 500;
-
 export const Interpolate = () => {
   const [dot, setDot] = useState<Point>(midPoint(p0, p1, p2));
   const signedArea = edgeFunction(p0, p1, p2);
   const bcu = edgeFunction(p1, p2, dot) / signedArea;
   const bcv = edgeFunction(p2, p0, dot) / signedArea;
   const bcw = edgeFunction(p0, p1, dot) / signedArea;
+
+  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const scale = canvasSize / 500;
 
   return (
     <div className="container">
@@ -127,8 +127,21 @@ export const Interpolate = () => {
             draggable
             x={dot.x}
             y={dot.y}
-            radius={5}
+            radius={5 / scale}
             fill={"dodgerblue"}
+            onDragMove={(e) => {
+              const mousePos = { x: e.target.x(), y: e.target.y() };
+              setDot(mousePos);
+              document.body.style.cursor = "grabbing";
+            }}
+            {...dragProps}
+          />
+          {/* Mobile hit */}
+          <Circle
+            draggable
+            x={dot.x}
+            y={dot.y}
+            radius={22}
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setDot(mousePos);

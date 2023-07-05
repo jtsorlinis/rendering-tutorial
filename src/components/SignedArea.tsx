@@ -128,7 +128,7 @@ export const SignedArea = () => {
             draggable
             x={p0.x}
             y={p0.y}
-            radius={5}
+            radius={5 / scale}
             fill={"dodgerblue"}
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
@@ -141,7 +141,7 @@ export const SignedArea = () => {
             draggable
             x={p1.x}
             y={p1.y}
-            radius={5}
+            radius={5 / scale}
             fill={"dodgerblue"}
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
@@ -154,8 +154,45 @@ export const SignedArea = () => {
             draggable
             x={p2.x}
             y={p2.y}
-            radius={5}
+            radius={5 / scale}
             fill={"dodgerblue"}
+            onDragMove={(e) => {
+              const mousePos = { x: e.target.x(), y: e.target.y() };
+              setP2(mousePos);
+              document.body.style.cursor = "grabbing";
+            }}
+            {...dragProps}
+          />
+          {/* Invisible hitboxes for mobile */}
+          <Circle
+            draggable
+            x={p0.x}
+            y={p0.y}
+            radius={22}
+            onDragMove={(e) => {
+              const mousePos = { x: e.target.x(), y: e.target.y() };
+              setP0(mousePos);
+              document.body.style.cursor = "grabbing";
+            }}
+            {...dragProps}
+          />
+          <Circle
+            draggable
+            x={p1.x}
+            y={p1.y}
+            radius={22}
+            onDragMove={(e) => {
+              const mousePos = { x: e.target.x(), y: e.target.y() };
+              setP1(mousePos);
+              document.body.style.cursor = "grabbing";
+            }}
+            {...dragProps}
+          />
+          <Circle
+            draggable
+            x={p2.x}
+            y={p2.y}
+            radius={22}
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP2(mousePos);

@@ -82,8 +82,21 @@ export const PointInTriangle = () => {
             draggable
             x={dot.x}
             y={dot.y}
-            radius={5}
+            radius={5 / scale}
             fill={"dodgerblue"}
+            onDragMove={(e) => {
+              const mousePos = { x: e.target.x(), y: e.target.y() };
+              setDot(mousePos);
+              document.body.style.cursor = "grabbing";
+            }}
+            {...dragProps}
+          />
+          {/* Invis mobile hit */}
+          <Circle
+            draggable
+            x={dot.x}
+            y={dot.y}
+            radius={22}
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setDot(mousePos);

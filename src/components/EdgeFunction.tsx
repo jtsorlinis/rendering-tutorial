@@ -44,7 +44,7 @@ export const EdgeFunction = () => {
       >
         <Layer>
           <Text
-            fill="black"
+            fill={signedArea > 0 ? "black" : "red"}
             text={`Edge Function ABP: ${~~signedArea}`}
             fontSize={16}
             x={10}
@@ -87,8 +87,21 @@ export const EdgeFunction = () => {
             draggable
             x={p2.x}
             y={p2.y}
-            radius={5}
+            radius={5 / scale}
             fill={"dodgerblue"}
+            onDragMove={(e) => {
+              const mousePos = { x: e.target.x(), y: e.target.y() };
+              setP2(mousePos);
+              document.body.style.cursor = "grabbing";
+            }}
+            {...dragProps}
+          />
+          {/* Invis hitbox for mobile */}
+          <Circle
+            draggable
+            x={p2.x}
+            y={p2.y}
+            radius={22}
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP2(mousePos);
