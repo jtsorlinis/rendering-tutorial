@@ -20,6 +20,8 @@ import triangleEdges from "./images/triangleEdges.png";
 import rasterisation from "./images/rasterisation.png";
 import shapesFromTris from "./images/shapesFromTris.png";
 import { Rasterisation } from "./components/Rasterisation";
+import { Final } from "./components/Final";
+import { FinalInterpolated } from "./components/FinalInterpolated";
 
 function App() {
   return (
@@ -371,9 +373,22 @@ function App() {
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.boundingBox}
         </SyntaxHighlighter>
+        <Typography className="sectionHeading" variant="h5">
+          Putting it all together
+        </Typography>
+        <p>
+          Now that we have our bounding box, we can loop through all the pixels
+          inside it and determine whether they are inside the triangle or not.
+          If they are, we draw them. If not, we don't. Here's a simulation of
+          what that would look like, try moving the points around:
+        </p>
+        <div className="center">
+          <Final />
+        </div>
         <p>
           <b>
-            That's it! We can now rasterise and draw triangles to the screen.
+            That's it! We can now rasterise and draw triangles to the screen
+            (somewhat efficiently).
             <br />
             <br />
             But there's another really cool thing we can do with edge
@@ -459,20 +474,18 @@ function App() {
         <div className="center">
           <Interpolate />
         </div>
-        <p>
-          Here's the full code to draw our triangle with interpolated colours:
-        </p>
-        <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
-          {snippets.final}
-        </SyntaxHighlighter>
-        <div className="center">
-          <figure>
-            <img src={interpolatedTriangle} alt="triangle" />
-            <figcaption>Our final triangle</figcaption>
-          </figure>
-        </div>
         <Typography className="sectionHeading" variant="h5">
           That's it! We're done!
+        </Typography>
+        <p>
+          Here's a simulation of our final triangle rasteriser, try dragging the
+          points around to see how the colours change:
+        </p>
+        <div className="center">
+          <FinalInterpolated />
+        </div>
+        <Typography className="sectionHeading" variant="h5">
+          Wrapping up
         </Typography>
         <p>
           I hope you enjoyed this tutorial, and it gave you a good understanding
@@ -486,6 +499,16 @@ function App() {
           If you have any questions/suggestions or want to see more, feel free
           to drop me an <Link href="mailto:jtsorlinis@gmail.com">email</Link>.
         </p>
+        <Typography className="sectionHeading" variant="h5">
+          Full code for our triangle rasteriser
+        </Typography>
+        <p>
+          Here's all the code we've worked through to rasterise and draw our
+          triangle with interpolated colours:
+        </p>
+        <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+          {snippets.final}
+        </SyntaxHighlighter>
       </div>
     </Typography>
   );
