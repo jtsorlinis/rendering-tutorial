@@ -18,7 +18,7 @@
 
 .container {
   position: relative;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .center {
@@ -49,10 +49,6 @@ figcaption {
 
 img {
   width: 100%;
-}
-
-p {
-  padding: 1rem 0;
 }
 
 pre {

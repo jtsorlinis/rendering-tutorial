@@ -1,4 +1,10 @@
-const edgeFunc = `// Returns double the signed area but that's fine
+const edgeFunc = `// Let's assume we have a Point type with an x and y property
+interface Point {
+  x: number;
+  y: number;
+}
+
+// Returns double the signed area but that's fine
 const edgeFunction = (a: Point, b: Point, c: Point) => {
   return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
 };
@@ -12,19 +18,20 @@ if (ABC < 0) {
   // Don't bother drawing this triangle
 }`;
 
-const pointInTriangle1 = `// Calculate our edge function for AB and P
-const ABP = edgeFunction(A, B, P);
-
-if (ABP >= 0) {
-  // Point is inside the edge AB
-}`;
-
-const pointInTriangle1b = `// We can pass the points in any order as long as they're clockwise
+const pointInTriangle1 = `// We can pass the points in any order as long as they're clockwise
 const ABP = edgeFunction(A, B, P);
 const BPA = edgeFunction(B, P, A);
 const PAB = edgeFunction(P, A, B);
 
 ABP === BPA === PAB;`;
+
+const pointInTriangle1a = `// Calculate our edge function for AB and P
+const ABP = edgeFunction(A, B, P);`;
+
+const pointInTriangle1b = `// Check if the point is inside the edge AB
+if (ABP >= 0) {
+  // Point is inside the edge AB
+}`;
 
 const pointInTriangle2 = `// Calculate our edge function for all three edges of the triangle ABC
 const ABP = edgeFunction(A, B, P); 
@@ -168,6 +175,7 @@ export const snippets = {
   edgeFunc,
   backfaceCulling,
   pointInTriangle1,
+  pointInTriangle1a,
   pointInTriangle1b,
   pointInTriangle2,
   pointInTriangle3,
