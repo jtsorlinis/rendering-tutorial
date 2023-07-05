@@ -45,7 +45,7 @@ export const Normalised = () => {
           />
           <Text
             fill={bcw > 0 ? "black" : "red"}
-            text={`ABP / ABC: ${bcw.toFixed(3)}`}
+            text={`ABP ÷ ABC: ${bcw.toFixed(3)}`}
             fontSize={16}
             x={10}
             y={50}

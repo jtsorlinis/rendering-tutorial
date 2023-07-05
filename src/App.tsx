@@ -9,13 +9,14 @@ import { snippets } from "./snippets";
 import { PointInTriangle } from "./components/PointInTriangle";
 import { PointInTriangle2 } from "./components/PointInTriangle2";
 import { Barycentric } from "./components/Barycentric";
-import redTriangle from "./images/redTriangle.png";
-import interpolatedTriangle from "./images/interpolatedTriangle.png";
-import windingOrder from "./images/windingOrder.png";
 import { BoundingBox } from "./components/BoundingBox";
 import { MathJax } from "better-react-mathjax";
 import { EdgeFunction } from "./components/EdgeFunction";
 import { EdgeRight } from "./components/EdgeRight";
+import redTriangle from "./images/redTriangle.png";
+import interpolatedTriangle from "./images/interpolatedTriangle.png";
+import windingOrder from "./images/windingOrder.png";
+import triangleEdges from "./images/triangleEdges.png";
 
 function App() {
   return (
@@ -216,11 +217,14 @@ function App() {
           Remember our edges need to be in clockwise order, so we can just go
           clockwise around the triangle:
         </p>
-        <ul>
-          <li>Edge 1: A -{">"} B</li>
-          <li>Edge 2: B -{">"} C</li>
-          <li>Edge 3: C -{">"} A</li>
-        </ul>
+        <div className="center">
+          <figure>
+            <img src={triangleEdges} alt="winding order" />
+            <figcaption>The edges of our triangle</figcaption>
+          </figure>
+        </div>
+        <br />
+        <p>Now we just repeat what we did before for all three edges:</p>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.pointInTriangle2}
         </SyntaxHighlighter>
@@ -279,6 +283,7 @@ function App() {
         <div className="center">
           <BoundingBox />
         </div>
+        <br />
         <p>
           As you can see from the above demo, if the triangle is small (which
           they generally are when rendering complex 3D models), we can save
@@ -302,7 +307,7 @@ function App() {
           </b>
         </p>
         <Typography className="sectionHeading" variant="h4">
-          Some more magic
+          One more (super) useful thing
         </Typography>
         <Typography className="subHeading" variant="h5">
           Normalised edge weights
@@ -310,8 +315,8 @@ function App() {
         <p>
           So our edge functions are pretty useful for determining whether a
           point is inside a triangle, but they can also be used to determine the
-          weights of each vertex of the triangle. This is useful for things like
-          interpolating colors across the triangle.
+          weights of each vertex of the triangle. We'll see why this is useful
+          in a second.
         </p>
         <p>
           Thankfully we've already done most of the work for this. All we need
@@ -343,9 +348,9 @@ function App() {
         <p>
           Our normalised edge function we calculated in the previous step
           actually was a barycentric coordinate. Barycentric coordinates are
-          just our normalised edge functions. So if we have a triangle ABC, then
-          the barycentric coordinates of point P are the weights of each vertex
-          of the triangle ABC.
+          just normalised edge functions. So if we have a triangle ABC, then the
+          weights of each vertex of the triangle are the barycentric coordinates
+          of the point P.
         </p>
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.barycentric2}
@@ -364,9 +369,10 @@ function App() {
         </Typography>
         <p>
           We've almost reached the end here. All that's left to do is put all
-          our newfound knowledge to use. We can use these weights to interpolate
-          any attribute we want! In the following example we use our barycentric
-          coordinates to interpolate the color for each pixel in the triangle.
+          our newfound knowledge to use. The reason these weights are so useful
+          is we can use them to interpolate any attribute we want! In the
+          following example we use our barycentric coordinates to interpolate
+          the color for each pixel (P) in the triangle.
         </p>
         <p>
           All we need is our 3 weights (barycentric coordinates) and the colours
