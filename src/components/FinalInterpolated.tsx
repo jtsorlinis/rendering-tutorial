@@ -15,8 +15,10 @@ const canvPad = 0;
 const start = { x: canvPad, y: canvPad };
 const end = { x: width - canvPad, y: height - canvPad };
 
-const xLines = (end.y - start.y) / 10;
-const yLines = (end.x - start.x) / 10;
+const pixelSize = 10;
+const halfPixel = pixelSize / 2;
+const xLines = (end.y - start.y) / pixelSize;
+const yLines = (end.x - start.x) / pixelSize;
 const totalPixels = xLines * yLines;
 
 export const FinalInterpolated = () => {
@@ -71,7 +73,12 @@ export const FinalInterpolated = () => {
           {Array.from(Array(xLines).keys()).map((i) => (
             <Line
               key={`x${i}`}
-              points={[start.x, start.y + i * 10, end.x, start.y + i * 10]}
+              points={[
+                start.x,
+                start.y + i * pixelSize,
+                end.x,
+                start.y + i * pixelSize,
+              ]}
               stroke="black"
               strokeWidth={0.5}
             />
@@ -79,7 +86,12 @@ export const FinalInterpolated = () => {
           {Array.from(Array(yLines).keys()).map((i) => (
             <Line
               key={`y${i}`}
-              points={[start.x + i * 10, start.y, start.x + i * 10, end.y]}
+              points={[
+                start.x + i * pixelSize,
+                start.y,
+                start.x + i * pixelSize,
+                end.y,
+              ]}
               stroke="black"
               strokeWidth={0.5}
             />
@@ -90,8 +102,8 @@ export const FinalInterpolated = () => {
           <Line points={[end.x, start.y, end.x, end.y]} stroke="black" />
           {Array.from(Array(totalPixels).keys()).map((i) => {
             const pos = {
-              x: start.x + (i % xLines) * 10 + 5,
-              y: start.y + Math.floor(i / xLines) * 10 + 5,
+              x: start.x + (i % xLines) * pixelSize + halfPixel,
+              y: start.y + Math.floor(i / xLines) * pixelSize + halfPixel,
             };
             const e1 = edgeFunction(p0, p1, pos) * invArea * 255;
             const e2 = edgeFunction(p1, p2, pos) * invArea * 255;
@@ -101,10 +113,10 @@ export const FinalInterpolated = () => {
             return (
               <Rect
                 key={`p${i}`}
-                x={pos.x - 5}
-                y={pos.y - 5}
-                width={10}
-                height={10}
+                x={pos.x - halfPixel}
+                y={pos.y - halfPixel}
+                width={pixelSize}
+                height={pixelSize}
                 fill={inside ? col : "black"}
                 opacity={0.8}
               />
