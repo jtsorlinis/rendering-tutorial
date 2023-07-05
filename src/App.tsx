@@ -17,6 +17,8 @@ import redTriangle from "./images/redTriangle.png";
 import interpolatedTriangle from "./images/interpolatedTriangle.png";
 import windingOrder from "./images/windingOrder.png";
 import triangleEdges from "./images/triangleEdges.png";
+import rasterisation from "./images/rasterisation.png";
+import shapesFromTris from "./images/shapesFromTris.png";
 
 function App() {
   return (
@@ -45,6 +47,43 @@ function App() {
           <figure>
             <img src={interpolatedTriangle} alt="triangle" />
             <figcaption>Here's what we'll (hopefully) end up with</figcaption>
+          </figure>
+        </div>
+        <Typography className="sectionHeading" variant="h5">
+          What even is Rasterisation?
+        </Typography>
+        <p>
+          Put simply, rasterisation is the process of converting an image made
+          up of lines and shapes into pixels. Why do we need to do this? Because
+          screens/displays only understand pixels, they have no concept of
+          anything like shapes or lines. It's much easier to draw with shapes
+          and lines though, so this is how we store our graphics. The goal of
+          our little rasteriser we'll be writing is to convert a triangle made
+          up of 3 points into its pixels on the screen. It might be easier to
+          understand with an image:
+        </p>
+        <div className="center">
+          <figure>
+            <img src={rasterisation} alt="triangle" />
+            <figcaption>Shapes to pixels</figcaption>
+          </figure>
+        </div>
+        <p>
+          The image on the right looks quite blocky, but pixels in real life are
+          usually much smaller than this, so the image looks smooth. The smaller
+          the pixels, the smoother the image. Our goal is to get from the
+          triangle on the left to the pixels on the right so we can put it on
+          the screen.
+        </p>
+        <p>
+          Why triangles? There's a few reasons, but the main one is it's the
+          simplest shape that can be used to make any shape. If you have enough
+          triangles you can make any shape you want.
+        </p>
+        <div className="center">
+          <figure>
+            <img src={shapesFromTris} alt="triangle" />
+            <figcaption>Triangles and more triangles</figcaption>
           </figure>
         </div>
         <Typography className="sectionHeading" variant="h5">
