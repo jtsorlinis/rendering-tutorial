@@ -4,7 +4,7 @@ import rasterisation from "../../images/rasterisation.png";
 import shapesFromTris from "../../images/shapesFromTris.png";
 import { Rasterisation } from "../demos/Rasterisation";
 
-export const Introduction = () => {
+export const IntroSection = () => {
   return (
     <>
       <Typography className="sectionHeading" variant="h5">

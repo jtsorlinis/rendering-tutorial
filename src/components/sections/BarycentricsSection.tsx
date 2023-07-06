@@ -7,7 +7,7 @@ import { FinalInterpolated } from "../demos/FinalInterpolated";
 import { Interpolate } from "../demos/Interpolate";
 import { Normalised } from "../demos/Normalised";
 
-export const Barycentrics = () => {
+export const BarycentricsSection = () => {
   return (
     <>
       <Typography className="sectionHeading" variant="h4">

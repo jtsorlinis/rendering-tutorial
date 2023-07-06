@@ -14,7 +14,7 @@ import redTriangle from "../../images/redTriangle.png";
 import windingOrder from "../../images/windingOrder.png";
 import triangleEdges from "../../images/triangleEdges.png";
 
-export const Rasterisation = () => {
+export const RasterisationSection = () => {
   return (
     <>
       <Typography className="sectionHeading" variant="h4">
