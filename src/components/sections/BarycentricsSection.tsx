@@ -6,8 +6,6 @@ import { FinalInterpolated } from "../demos/FinalInterpolated";
 import { Interpolate } from "../demos/Interpolate";
 import { Normalised } from "../demos/Normalised";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
-SyntaxHighlighter.registerLanguage("typescript", ts);
 
 export const BarycentricsSection = () => {
   return (

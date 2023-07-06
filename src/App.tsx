@@ -6,6 +6,9 @@ import { RasterisationSection } from "./components/sections/RasterisationSection
 import { BarycentricsSection } from "./components/sections/BarycentricsSection";
 import { PageProgress } from "./components/PageProgress";
 import { LinesSection } from "./components/sections/LinesSection";
+import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
+SyntaxHighlighter.registerLanguage("typescript", ts);
 
 function App() {
   return (
