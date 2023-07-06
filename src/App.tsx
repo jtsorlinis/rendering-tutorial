@@ -7,6 +7,7 @@ import { BarycentricsSection } from "./components/sections/BarycentricsSection";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 import { PageProgress } from "./components/PageProgress";
+import { LinesSection } from "./components/sections/LinesSection";
 SyntaxHighlighter.registerLanguage("typescript", ts);
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         By <Link href="https://github.com/jtsorlinis">Jason Tsorlinis</Link>
       </span>
       <div>
+        <LinesSection />
         <IntroSection />
         <RasterisationSection />
         <BarycentricsSection />
