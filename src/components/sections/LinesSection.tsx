@@ -3,6 +3,7 @@ import { MathJax } from "better-react-mathjax";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { lineSnippets } from "../../lineSnippets";
+import { Line1 } from "../demos/line/Line1";
 
 export const LinesSection = () => {
   return (
@@ -36,6 +37,9 @@ export const LinesSection = () => {
         {lineSnippets.line1}
       </SyntaxHighlighter>
       <p>This works, but it has a few issues.</p>
+      <div className="center">
+        <Line1 />
+      </div>
       <p>
         If we have a line with a slope of 0.5, then we'll be drawing a pixel
         every 2 x values. This means we'll be missing a lot of pixels. We can
