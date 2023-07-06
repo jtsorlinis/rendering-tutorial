@@ -7,10 +7,10 @@ const width = 500;
 const height = 500;
 const pad = 75;
 
-const pixelSize = 20;
+const pixelSize = 10;
 const halfPixel = pixelSize / 2;
 
-const p0 = { x: halfPixel, y: height - halfPixel };
+const p0 = { x: width / 2 + halfPixel, y: height / 2 - halfPixel };
 const p1start = { x: width - pad, y: pad };
 
 const canvPad = 0;
@@ -21,23 +21,32 @@ const xLines = (end.y - start.y) / pixelSize;
 const yLines = (end.x - start.x) / pixelSize;
 const totalPixels = xLines * yLines;
 
-const lineAlgorithm1 = (start: Point, end: Point) => {
+const lineAlgorithm2 = (start: Point, end: Point) => {
   const points = [];
   const slope = (end.y - start.y) / (end.x - start.x);
-  let y = start.y;
-  for (let x = start.x; x <= end.x; x++) {
-    points.push({ x: ~~x, y: ~~y });
-    y += slope;
+  const steep = Math.abs(slope) > 1;
+  if (steep) {
+    let x = start.x;
+    for (let y = start.y; y >= end.y; y--) {
+      points.push({ x: ~~x, y: ~~y });
+      x += 1 / -slope;
+    }
+  } else {
+    let y = start.y;
+    for (let x = start.x; x <= end.x; x++) {
+      points.push({ x: ~~x, y: ~~y });
+      y += slope;
+    }
   }
   return points;
 };
 
-export const Line1 = () => {
+export const Line2a = () => {
   const [p1, setP1] = useState<Point>(p1start);
 
   const p0grid = { x: p0.x / pixelSize, y: p0.y / pixelSize };
   const p1grid = { x: p1.x / pixelSize, y: p1.y / pixelSize };
-  const points = lineAlgorithm1(p0grid, p1grid);
+  const points = lineAlgorithm2(p0grid, p1grid);
   const slope = -(p1grid.y - p0grid.y) / (p1grid.x - p0grid.x);
 
   const canvasSize = Math.min(window.innerWidth - 32, 500);

@@ -4,6 +4,8 @@ import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { lineSnippets } from "../../lineSnippets";
 import { Line1 } from "../demos/line/Line1";
+import { Line2 } from "../demos/line/Line2";
+import { Line2a } from "../demos/line/Line2a";
 
 export const LinesSection = () => {
   return (
@@ -36,31 +38,36 @@ export const LinesSection = () => {
       <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
         {lineSnippets.line1}
       </SyntaxHighlighter>
-      <p>This works, but it has a few issues.</p>
+      <p>
+        This works, but it has a few issues. Try moving the point around and see
+        what happens when the angle of the line changes:
+      </p>
       <div className="center">
         <Line1 />
       </div>
+      <br />
       <p>
-        If we have a line with a slope of 0.5, then we'll be drawing a pixel
-        every 2 x values. This means we'll be missing a lot of pixels. We can
-        fix this by calculating the error of each pixel and adding it to the y
-        value. This is called Bresenham's line algorithm. Let's see how this
-        looks in code:
+        As the slope goes above 1, we start to see gaps in the line. This is
+        because we're only drawing one pixel for each x value, but we need to
+        draw multiple pixels for each y value. We can instead drawing a pixel
+        for each y value, and then calculating the x value for each y value:
       </p>
       <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
-        {`const slope = (end.y - start.y) / (end.x - start.x);
-        let y = start.y;
-        let error = 0;
-        for (let x = start.x; x <= end.x; x++) {
-          setPixel(x, y);
-          error += slope;
-          if (error >= 0.5) {
-            y += 1;
-            error -= 1;
-          }
-        }`}
+        {lineSnippets.line2}
       </SyntaxHighlighter>
-      <p>This is much better, but it's still not perfect. It works well for</p>
+      <p>Let's see how this looks now:</p>
+      <div className="center">
+        <Line2 />
+      </div>
+      <br />
+      <p>
+        This is much better, but we still have a problem. Let's zoom out a bit
+        in the next demo so you can move the line more freely. Can you notice
+        the issue?
+      </p>
+      <div className="center">
+        <Line2a />
+      </div>
     </>
   );
 };
