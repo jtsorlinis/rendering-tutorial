@@ -10,8 +10,6 @@ import { PointInTriangle } from "../demos/PointInTriangle";
 import { PointInTriangle2 } from "../demos/PointInTriangle2";
 import { SignedArea } from "../demos/SignedArea";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
-SyntaxHighlighter.registerLanguage("typescript", ts);
 import redTriangle from "../../images/redTriangle.png";
 import windingOrder from "../../images/windingOrder.png";
 import triangleEdges from "../../images/triangleEdges.png";
