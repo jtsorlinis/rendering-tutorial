@@ -2,7 +2,7 @@ import { Stage, Layer, Line, Rect } from "react-konva";
 import { Button, Slider } from "@mui/material";
 import { useState } from "react";
 import { Html } from "react-konva-utils";
-import { edgeFunction } from "./utils";
+import { edgeFunction } from "../utils";
 
 const width = 500;
 const height = 500;
