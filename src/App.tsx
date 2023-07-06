@@ -4,11 +4,8 @@ import { ToggleThemeButton } from "./components/ThemeToggleProvider";
 import { IntroSection } from "./components/sections/IntroSection";
 import { RasterisationSection } from "./components/sections/RasterisationSection";
 import { BarycentricsSection } from "./components/sections/BarycentricsSection";
-import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 import { PageProgress } from "./components/PageProgress";
 import { LinesSection } from "./components/sections/LinesSection";
-SyntaxHighlighter.registerLanguage("typescript", ts);
 
 function App() {
   return (

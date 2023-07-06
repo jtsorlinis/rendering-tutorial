@@ -11,8 +11,8 @@ import { ThemeToggleProvider } from "./components/ThemeToggleProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <CssBaseline />
     <ThemeToggleProvider>
+      <CssBaseline />
       <StyledEngineProvider injectFirst>
         <MathJaxContext>
           <Typography component={"div"}>
