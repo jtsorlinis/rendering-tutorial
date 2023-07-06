@@ -48,7 +48,7 @@ export const ToggleThemeButton = () => {
   const theme = useTheme();
   return (
     <IconButton
-      sx={{ position: "absolute", top: "0", right: "0" }}
+      sx={{ position: "absolute", top: "8px", right: "0" }}
       onClick={toggleColorMode}
     >
       {theme.palette.mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
