@@ -5,7 +5,7 @@ import { Barycentric } from "../demos/Barycentric";
 import { FinalInterpolated } from "../demos/FinalInterpolated";
 import { Interpolate } from "../demos/Interpolate";
 import { Normalised } from "../demos/Normalised";
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 SyntaxHighlighter.registerLanguage("typescript", ts);
 
