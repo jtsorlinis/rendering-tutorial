@@ -5,15 +5,21 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { StyledEngineProvider } from "@mui/material";
+import { CssBaseline, StyledEngineProvider, Typography } from "@mui/material";
 import { MathJaxContext } from "better-react-mathjax";
+import { ThemeToggleProvider } from "./ThemeToggleProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <MathJaxContext>
-        <App />
-      </MathJaxContext>
-    </StyledEngineProvider>
+    <ThemeToggleProvider>
+      <CssBaseline />
+      <StyledEngineProvider injectFirst>
+        <MathJaxContext>
+          <Typography component={"div"}>
+            <App />
+          </Typography>
+        </MathJaxContext>
+      </StyledEngineProvider>
+    </ThemeToggleProvider>
   </React.StrictMode>
 );

@@ -7,6 +7,7 @@
 .stage {
   border: 1px solid black;
   border-radius: 5px;
+  background: white;
 }
 
 .resetButton {
@@ -60,6 +61,7 @@ pre {
 }
 
 iframe {
+  border: none;
   position: absolute;
   top: 0;
   left: 0;

@@ -20,6 +20,7 @@ import shapesFromTris from "./images/shapesFromTris.png";
 import { Rasterisation } from "./components/Rasterisation";
 import { Final } from "./components/Final";
 import { FinalInterpolated } from "./components/FinalInterpolated";
+import { ToggleThemeButton } from "./ThemeToggleProvider";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -27,7 +28,9 @@ SyntaxHighlighter.registerLanguage("typescript", ts);
 
 function App() {
   return (
-    <Typography variant="body1" component={"div"}>
+    <>
+      <ToggleThemeButton />
+      <br />
       <Typography variant="h3">Rasterising a triangle</Typography>
       <span>
         By <Link href="https://github.com/jtsorlinis">Jason Tsorlinis</Link>
@@ -45,8 +48,8 @@ function App() {
         <p>
           So I thought it would be fun (and hopefully helpful) to write a
           tutorial about it. I'm going to assume you have a basic understanding
-          of linear algebra, and have a decent grasp on programming. If you
-          don't, don't worry, I'll try to explain everything as best I can.
+          of linear algebra, and have a decent grasp on programming. If not,
+          don't worry, I'll try to explain everything as best I can.
         </p>
         <div className="center">
           <figure>
@@ -514,7 +517,7 @@ function App() {
           {snippets.final}
         </SyntaxHighlighter>
       </div>
-    </Typography>
+    </>
   );
 }
 
