@@ -347,12 +347,14 @@ function App() {
         <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
           {snippets.drawTriangle1}
         </SyntaxHighlighter>
-        <p>And here's what it looks like:</p>
+        <p>
+          Here's a simulation of what that would look like. In reality there'd
+          be a lot more pixels but this is just to give an idea. Try moving the
+          points around below, notice what happens if the points become
+          counter-clockwise?
+        </p>
         <div className="center">
-          <figure>
-            <img src={redTriangle} alt="red triangle" />
-            <figcaption>Our beautiful triangle</figcaption>
-          </figure>
+          <Final />
         </div>
         <Typography className="sectionHeading" variant="h5">
           An easy speedup
@@ -386,11 +388,14 @@ function App() {
         <p>
           Now that we have our bounding box, we can loop through all the pixels
           inside it and determine whether they are inside the triangle or not.
-          If they are, we draw them. If not, we don't. Here's a simulation of
-          what that would look like, try moving the points around:
+          If they are, we draw them. If not, we don't. Here's what we end up
+          with:
         </p>
         <div className="center">
-          <Final />
+          <figure>
+            <img src={redTriangle} alt="red triangle" />
+            <figcaption>Our beautiful triangle</figcaption>
+          </figure>
         </div>
         <p>
           <b>
@@ -485,8 +490,9 @@ function App() {
           That's it! We're done!
         </Typography>
         <p>
-          Here's a simulation of our final triangle rasteriser, try dragging the
-          points around to see how the colours change:
+          Here's a simulation of our final triangle rasteriser, the real thing
+          should more like the initial picture at the start of the article. Try
+          dragging the points around to see how the colours change:
         </p>
         <div className="center">
           <FinalInterpolated />
