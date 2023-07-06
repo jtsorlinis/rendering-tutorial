@@ -23,7 +23,7 @@
     "react-dom": "^18.2.0",
     "react-konva": "^18.2.10",
     "react-konva-utils": "^1.0.4",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": "npm:@fengkx/react-syntax-highlighter@15.6.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
