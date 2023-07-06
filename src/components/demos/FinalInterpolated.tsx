@@ -28,7 +28,7 @@ export const FinalInterpolated = () => {
 
   const invArea = Math.abs(1 / edgeFunction(p0, p1, p2));
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

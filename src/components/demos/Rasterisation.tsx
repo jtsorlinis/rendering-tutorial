@@ -25,7 +25,7 @@ const totalPixels = xLines * yLines;
 export const Rasterisation = () => {
   const [progress, setProgress] = useState<number>(0);
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

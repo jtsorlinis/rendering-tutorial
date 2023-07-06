@@ -23,7 +23,7 @@ export const BoundingBox = () => {
   const bboxPixels = (maxX - minX) * (maxY - minY);
   const speedup = canvasPixels / bboxPixels;
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

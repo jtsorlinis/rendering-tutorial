@@ -25,7 +25,7 @@ export const SignedArea = () => {
     y: (p0.y + p1.y + p2.y) / 3 - 24,
   };
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

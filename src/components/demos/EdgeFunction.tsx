@@ -17,7 +17,7 @@ export const EdgeFunction = () => {
   const [p2, setP2] = useState<Point>(p2start);
   const signedArea = edgeFunction(p0, p1, p2);
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

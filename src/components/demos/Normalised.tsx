@@ -17,7 +17,7 @@ export const Normalised = () => {
   const edgeAB = edgeFunction(p0, p1, dot);
   const bcw = edgeAB / signedArea;
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

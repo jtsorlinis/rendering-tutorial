@@ -18,7 +18,7 @@ export const Interpolate = () => {
   const bcv = edgeFunction(p2, p0, dot) / signedArea;
   const bcw = edgeFunction(p0, p1, dot) / signedArea;
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

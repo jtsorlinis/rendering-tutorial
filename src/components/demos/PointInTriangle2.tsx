@@ -17,7 +17,7 @@ export const PointInTriangle2 = () => {
   const edgeBC = edgeFunction(p1, p2, dot);
   const edgeCA = edgeFunction(p2, p0, dot);
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

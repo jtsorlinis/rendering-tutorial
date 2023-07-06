@@ -26,7 +26,7 @@ export const Final = () => {
   const [p1, setP1] = useState<Point>(p1start);
   const [p2, setP2] = useState<Point>(p2start);
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (

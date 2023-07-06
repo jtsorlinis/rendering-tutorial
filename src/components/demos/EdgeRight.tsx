@@ -36,7 +36,7 @@ export const EdgeRight = () => {
   const perp = { x: -p1p0.y / 1.75, y: p1p0.x / 1.75 };
   const end = { x: midp0p1.x + perp.x, y: midp0p1.y + perp.y };
 
-  const canvasSize = Math.min(document.body.clientWidth - 32, 500);
+  const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
 
   return (
