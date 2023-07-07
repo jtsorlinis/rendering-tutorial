@@ -1,0 +1,1 @@
+import e from"./c-0e9d88e9.js";import"./index-18d22176.js";import"./konva-e1600009.js";c.displayName="cilkc";c.aliases=["cilk-c"];function c(a){a.register(e),a.languages.cilkc=a.languages.insertBefore("c","function",{"parallel-keyword":{pattern:/\bcilk_(?:for|reducer|s(?:cope|pawn|ync))\b/,alias:"keyword"}}),a.languages["cilk-c"]=a.languages.cilkc}export{c as default};
