@@ -269,6 +269,38 @@ export const RasterisationSection = () => {
       <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
         {snippets.boundingBox}
       </SyntaxHighlighter>
+      <p>
+        While looping through the pixels in the bounding box saves a lot of
+        time, it may still seem like a lot of looping and calculating for each
+        pixel. But if we break down what's happening inside the inner loop all
+        we really have is:
+      </p>
+      <ul>
+        <li>
+          <b>3</b> Edge functions (AB, BC, CA) each which contain:
+        </li>
+        <ul>
+          <li>
+            <b>2</b> multiplications
+          </li>
+          <li>
+            <b>5</b> subtractions
+          </li>
+        </ul>
+        <li>
+          <b>3</b> Comparisons to check if the edge functions are positive
+        </li>
+      </ul>
+      <p>
+        All up that's <b>24</b> operations per pixel. But remember, GPU's can do
+        all of these in parallel, as our calculations for each pixel are
+        independent of each other and don't rely on any other pixels.
+      </p>
+      <p>
+        <b>Note:</b> There is still room for more optimisation by
+        pre-calculating some of the values, but that's a bit beyond the scope of
+        this article.
+      </p>
       <Typography className="sectionHeading" variant="h5">
         Putting it all together
       </Typography>
