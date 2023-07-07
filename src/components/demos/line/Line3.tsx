@@ -1,17 +1,17 @@
 import { Stage, Layer, Line, Rect, Circle, Text } from "react-konva";
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { Point, dragProps, lineAlgorithm2 } from "../../utils";
+import { Point, dragProps, lineAlgorithm3 } from "../../utils";
 
 const width = 500;
 const height = 500;
 const pad = 75;
 
-const pixelSize = 20;
+const pixelSize = 10;
 const halfPixel = pixelSize / 2;
 
-const p0 = { x: 3 * halfPixel, y: 5 * halfPixel };
-const p1start = { x: width - pad, y: height - pad + pixelSize };
+const p0start = { x: width / 2 + halfPixel, y: height / 2 - halfPixel };
+const p1start = { x: width - pad, y: height - pad - pixelSize };
 
 const canvPad = 0;
 const start = { x: canvPad, y: canvPad };
@@ -21,12 +21,13 @@ const xLines = (end.y - start.y) / pixelSize;
 const yLines = (end.x - start.x) / pixelSize;
 const totalPixels = xLines * yLines;
 
-export const Line2 = () => {
+export const Line3 = () => {
+  const [p0, setP0] = useState<Point>(p0start);
   const [p1, setP1] = useState<Point>(p1start);
 
   const p0grid = { x: p0.x / pixelSize, y: p0.y / pixelSize };
   const p1grid = { x: p1.x / pixelSize, y: p1.y / pixelSize };
-  const points = lineAlgorithm2(p0grid, p1grid);
+  const points = lineAlgorithm3(p0grid, p1grid);
   const slope = (p1grid.y - p0grid.y) / (p1grid.x - p0grid.x);
 
   const canvasSize = Math.min(window.innerWidth - 32, 500);
@@ -112,9 +113,10 @@ export const Line2 = () => {
               />
             );
           })}
-          {/* Visual points */}
+          {/* Draggable visuals */}
           <Circle x={p1.x} y={p1.y} radius={5 / scale} fill={"dodgerblue"} />
-          {/* Draggable hit */}
+          <Circle x={p0.x} y={p0.y} radius={5 / scale} fill={"dodgerblue"} />
+          {/* Draggable hitboxes */}
           <Circle
             draggable
             x={p1.x}
@@ -123,6 +125,18 @@ export const Line2 = () => {
             onDragMove={(e) => {
               const mousePos = { x: e.target.x(), y: e.target.y() };
               setP1(mousePos);
+              document.body.style.cursor = "grabbing";
+            }}
+            {...dragProps}
+          />
+          <Circle
+            draggable
+            x={p0.x}
+            y={p0.y}
+            radius={22}
+            onDragMove={(e) => {
+              const mousePos = { x: e.target.x(), y: e.target.y() };
+              setP0(mousePos);
               document.body.style.cursor = "grabbing";
             }}
             {...dragProps}

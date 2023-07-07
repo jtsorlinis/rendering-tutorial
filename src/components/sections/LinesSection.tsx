@@ -6,6 +6,7 @@ import { Line1 } from "../demos/line/Line1";
 import { Line2 } from "../demos/line/Line2";
 import { Line2a } from "../demos/line/Line2a";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { Line3 } from "../demos/line/Line3";
 
 export const LinesSection = () => {
   return (
@@ -49,8 +50,9 @@ export const LinesSection = () => {
       <p>
         As the slope goes above 1, we start to see gaps in the line. This is
         because we're only drawing one pixel for each x value, but we need to
-        draw multiple pixels for each y value. We can instead drawing a pixel
-        for each y value, and then calculating the x value for each y value:
+        draw multiple pixels for each y value. We can add a "steep" check that
+        checks if the slope is greater than 1 and then swap the x and y values
+        if it is:
       </p>
       <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
         {lineSnippets.line2}
@@ -63,10 +65,33 @@ export const LinesSection = () => {
       <p>
         This is much better, but we still have a problem. Let's zoom out a bit
         in the next demo so you can move the line more freely. Can you notice
-        the issue?
+        the issue? I've drawn a line cutting through the middle of the canvas to
+        help:
       </p>
       <div className="center">
         <Line2a />
+      </div>
+      <br />
+      <p>
+        It only works in half the directions! This is because we're only drawing
+        the line when the ex value is greater than the sx value. Remember this
+        loop?
+      </p>
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {`for (let x = sx; x <= ex; x++)`}
+      </SyntaxHighlighter>
+      <p>
+        Remember we swap x and y for steep lines, that's, so x, sx, and ex don't
+        necessarily refer to the x values. We need to add an additional check to
+        see if our sx value is greater than ex, and if it is, we need to swap
+        the start and end points:
+      </p>
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {lineSnippets.line3}
+      </SyntaxHighlighter>
+      <p>Now we can draw lines in any direction! Try it out!</p>
+      <div className="center">
+        <Line3 />
       </div>
     </>
   );

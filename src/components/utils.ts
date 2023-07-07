@@ -46,3 +46,84 @@ export const dragProps = {
   onMouseOut: mouseOut,
   onDragEnd: dragEnd,
 };
+
+export const lineAlgorithm1 = (start: Point, end: Point) => {
+  const points = [];
+  // Make copies of start and end values
+  const [sx, ex] = [start.x, end.x];
+  const [sy, ey] = [start.y, end.y];
+
+  const slope = (ey - sy) / (ex - sx);
+
+  let y = sy;
+  for (let x = sx; x <= ex; x++) {
+    points.push({ x: ~~x, y: ~~y });
+    y += slope;
+  }
+  return points;
+};
+
+export const lineAlgorithm2 = (start: Point, end: Point) => {
+  const points = [];
+  // Make copies of start and end values
+  let [sx, ex] = [start.x, end.x];
+  let [sy, ey] = [start.y, end.y];
+
+  let slope = (ey - sy) / (ex - sx);
+  const steep = Math.abs(slope) > 1;
+
+  if (steep) {
+    // Swap x and y
+    [sx, sy] = [sy, sx];
+    [ex, ey] = [ey, ex];
+
+    // Invert slope
+    slope = 1 / slope;
+  }
+
+  let y = sy;
+  for (let x = sx; x <= ex; x++) {
+    if (steep) {
+      points.push({ x: ~~y, y: ~~x });
+    } else {
+      points.push({ x: ~~x, y: ~~y });
+    }
+    y += slope;
+  }
+  return points;
+};
+
+export const lineAlgorithm3 = (start: Point, end: Point) => {
+  const points = [];
+  // Make copies of start and end values
+  let [sx, ex] = [start.x, end.x];
+  let [sy, ey] = [start.y, end.y];
+
+  let slope = (ey - sy) / (ex - sx);
+  const steep = Math.abs(slope) > 1;
+
+  if (steep) {
+    // Swap x and y
+    [sx, sy] = [sy, sx];
+    [ex, ey] = [ey, ex];
+
+    // Invert slope
+    slope = 1 / slope;
+  }
+
+  if (ex < sx) {
+    [sx, ex] = [ex, sx];
+    [sy, ey] = [ey, sy];
+  }
+
+  let y = sy;
+  for (let x = sx; x <= ex; x++) {
+    if (steep) {
+      points.push({ x: ~~y, y: ~~x });
+    } else {
+      points.push({ x: ~~x, y: ~~y });
+    }
+    y += slope;
+  }
+  return points;
+};

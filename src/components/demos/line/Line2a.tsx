@@ -1,7 +1,7 @@
 import { Stage, Layer, Line, Rect, Circle, Text } from "react-konva";
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { Point, dragProps } from "../../utils";
+import { Point, dragProps, lineAlgorithm2 } from "../../utils";
 
 const width = 500;
 const height = 500;
@@ -11,7 +11,7 @@ const pixelSize = 10;
 const halfPixel = pixelSize / 2;
 
 const p0 = { x: width / 2 + halfPixel, y: height / 2 - halfPixel };
-const p1start = { x: width - pad, y: pad };
+const p1start = { x: width - pad, y: height - pad - pixelSize };
 
 const canvPad = 0;
 const start = { x: canvPad, y: canvPad };
@@ -21,33 +21,13 @@ const xLines = (end.y - start.y) / pixelSize;
 const yLines = (end.x - start.x) / pixelSize;
 const totalPixels = xLines * yLines;
 
-const lineAlgorithm2 = (start: Point, end: Point) => {
-  const points = [];
-  const slope = (end.y - start.y) / (end.x - start.x);
-  const steep = Math.abs(slope) > 1;
-  if (steep) {
-    let x = start.x;
-    for (let y = start.y; y >= end.y; y--) {
-      points.push({ x: ~~x, y: ~~y });
-      x += 1 / -slope;
-    }
-  } else {
-    let y = start.y;
-    for (let x = start.x; x <= end.x; x++) {
-      points.push({ x: ~~x, y: ~~y });
-      y += slope;
-    }
-  }
-  return points;
-};
-
 export const Line2a = () => {
   const [p1, setP1] = useState<Point>(p1start);
 
   const p0grid = { x: p0.x / pixelSize, y: p0.y / pixelSize };
   const p1grid = { x: p1.x / pixelSize, y: p1.y / pixelSize };
   const points = lineAlgorithm2(p0grid, p1grid);
-  const slope = -(p1grid.y - p0grid.y) / (p1grid.x - p0grid.x);
+  const slope = (p1grid.y - p0grid.y) / (p1grid.x - p0grid.x);
 
   const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
@@ -80,6 +60,13 @@ export const Line2a = () => {
             fontSize={16}
           />
           <Line points={[p0.x, p0.y, p1.x, p1.y]} stroke="black" />
+          {/* Diagonal divider */}
+          <Line
+            points={[start.x, end.y, end.x, start.y]}
+            stroke="black"
+            dash={[5, 5]}
+            opacity={0.2}
+          />
           {/* Draw grid */}
           {Array.from(Array(xLines).keys()).map((i) => (
             <Line
@@ -132,21 +119,9 @@ export const Line2a = () => {
               />
             );
           })}
-          {/* Draggable points */}
-          <Circle
-            draggable
-            x={p1.x}
-            y={p1.y}
-            radius={5 / scale}
-            fill={"dodgerblue"}
-            onDragMove={(e) => {
-              const mousePos = { x: e.target.x(), y: e.target.y() };
-              setP1(mousePos);
-              document.body.style.cursor = "grabbing";
-            }}
-            {...dragProps}
-          />
-          {/* Mobile hit */}
+          {/* Visual points */}
+          <Circle x={p1.x} y={p1.y} radius={5 / scale} fill={"dodgerblue"} />
+          {/* Draggable hitbox */}
           <Circle
             draggable
             x={p1.x}
