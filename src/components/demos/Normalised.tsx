@@ -91,21 +91,10 @@ export const Normalised = () => {
             opacity={Math.abs(bcw)}
             strokeWidth={1}
           />
-          {/* Draggable dot */}
-          <Circle
-            draggable
-            x={dot.x}
-            y={dot.y}
-            radius={5 / scale}
-            fill={"dodgerblue"}
-            onDragMove={(e) => {
-              const mousePos = { x: e.target.x(), y: e.target.y() };
-              setDot(mousePos);
-              document.body.style.cursor = "grabbing";
-            }}
-            {...dragProps}
-          />
-          {/* Mobile hit */}
+          <Text text="P" fontSize={16} x={dot.x + 8} y={dot.y - 6} />
+          {/* Visible dot */}
+          <Circle x={dot.x} y={dot.y} radius={5 / scale} fill={"dodgerblue"} />
+          {/* Invisible draggable */}
           <Circle
             draggable
             x={dot.x}
@@ -118,8 +107,6 @@ export const Normalised = () => {
             }}
             {...dragProps}
           />
-
-          <Text text="P" fontSize={16} x={dot.x + 8} y={dot.y - 6} />
         </Layer>
       </Stage>
     </div>

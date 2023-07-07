@@ -82,21 +82,9 @@ export const EdgeFunction = () => {
           <Text text={`B`} fontSize={16} x={p1.x} y={p1.y - 20} />
           <Text text={`P`} fontSize={16} x={p2.x + 5} y={p2.y + 8} />
 
-          {/* Draggable points */}
-          <Circle
-            draggable
-            x={p2.x}
-            y={p2.y}
-            radius={5 / scale}
-            fill={"dodgerblue"}
-            onDragMove={(e) => {
-              const mousePos = { x: e.target.x(), y: e.target.y() };
-              setP2(mousePos);
-              document.body.style.cursor = "grabbing";
-            }}
-            {...dragProps}
-          />
-          {/* Invis hitbox for mobile */}
+          {/* Visible dots */}
+          <Circle x={p2.x} y={p2.y} radius={5 / scale} fill={"dodgerblue"} />
+          {/* Invisible draggables */}
           <Circle
             draggable
             x={p2.x}
