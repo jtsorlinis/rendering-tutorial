@@ -1,10 +1,10 @@
 import { Link, Typography } from "@mui/material";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { snippets } from "../../snippets";
-import { Barycentric } from "../demos/Barycentric";
-import { FinalInterpolated } from "../demos/FinalInterpolated";
-import { Interpolate } from "../demos/Interpolate";
-import { Normalised } from "../demos/Normalised";
+import { snippets } from "../../utils/triangleSnippets";
+import { Barycentric } from "../demos/triangle/Barycentric";
+import { FinalInterpolated } from "../demos/triangle/FinalInterpolated";
+import { Interpolate } from "../demos/triangle/Interpolate";
+import { Normalised } from "../demos/triangle/Normalised";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 
 export const BarycentricsSection = () => {

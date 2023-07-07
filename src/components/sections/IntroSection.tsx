@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import interpolatedTriangle from "../../images/interpolatedTriangle.png";
 import rasterisation from "../../images/rasterisation.png";
 import shapesFromTris from "../../images/shapesFromTris.png";
-import { Rasterisation } from "../demos/Rasterisation";
+import { Rasterisation } from "../demos/triangle/Rasterisation";
 
 export const IntroSection = () => {
   return (

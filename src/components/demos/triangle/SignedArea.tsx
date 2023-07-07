@@ -1,6 +1,6 @@
 import { Stage, Layer, Circle, Text, Arrow } from "react-konva";
 import { Button } from "@mui/material";
-import { Point, dragProps, edgeFunction } from "../utils";
+import { Point, dragProps, edgeFunction } from "../../../utils/helperFuncs";
 import { useState } from "react";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import RotateRightIcon from "@mui/icons-material/RotateRight";

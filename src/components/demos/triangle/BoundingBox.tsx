@@ -1,6 +1,6 @@
 import { Stage, Layer, Shape, Circle, Text, Rect } from "react-konva";
 import { Button } from "@mui/material";
-import { Point, dragProps } from "../utils";
+import { Point, dragProps } from "../../../utils/helperFuncs";
 import { useState } from "react";
 
 const width = 500;

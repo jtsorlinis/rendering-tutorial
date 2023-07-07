@@ -1,7 +1,12 @@
 import { Stage, Layer, Shape, Circle, Text } from "react-konva";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { Point, midPoint, edgeFunction, dragProps } from "../utils";
+import {
+  Point,
+  midPoint,
+  edgeFunction,
+  dragProps,
+} from "../../../utils/helperFuncs";
 
 const width = 500;
 const height = 500;
@@ -11,7 +16,7 @@ const p0 = { x: pad, y: height - pad };
 const p1 = { x: width / 2, y: pad };
 const p2 = { x: width - pad, y: height - pad };
 
-export const PointInTriangle = () => {
+export const Normalised = () => {
   const [dot, setDot] = useState<Point>(midPoint(p0, p1, p2));
   const signedArea = edgeFunction(p0, p1, p2);
   const edgeAB = edgeFunction(p0, p1, dot);
@@ -41,10 +46,23 @@ export const PointInTriangle = () => {
         <Layer>
           <Text
             fill={bcw > 0 ? "black" : "red"}
-            text={`Edge function ABP: ${~~edgeAB}`}
+            text={`Signed area ABP: ${Math.floor(edgeAB)}`}
             fontSize={16}
             x={10}
             y={10}
+          />
+          <Text
+            text={`Signed area ABC: ${Math.floor(signedArea)}`}
+            fontSize={16}
+            x={10}
+            y={30}
+          />
+          <Text
+            fill={bcw > 0 ? "black" : "red"}
+            text={`ABP ÷ ABC: ${bcw.toFixed(3)}`}
+            fontSize={16}
+            x={10}
+            y={50}
           />
           {/* Main triangle */}
           <Shape
@@ -74,9 +92,9 @@ export const PointInTriangle = () => {
               context.fillStrokeShape(shape);
             }}
             stroke={"black"}
-            fill={bcw > 0 ? "green" : "red"}
+            fill={bcw > 0 ? "blue" : "red"}
+            opacity={Math.abs(bcw)}
             strokeWidth={1}
-            opacity={0.5}
           />
           <Text text="P" fontSize={16} x={dot.x + 8} y={dot.y - 6} />
           {/* Visible dot */}

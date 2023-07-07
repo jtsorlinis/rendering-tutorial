@@ -1,12 +1,13 @@
 import { Link, Typography } from "@mui/material";
 import { MathJax } from "better-react-mathjax";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { lineSnippets } from "../../lineSnippets";
+import { lineSnippets } from "../../utils/lineSnippets";
 import { Line1 } from "../demos/line/Line1";
 import { Line2 } from "../demos/line/Line2";
 import { Line2a } from "../demos/line/Line2a";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { Line3 } from "../demos/line/Line3";
+import { Line4 } from "../demos/line/Line4";
 
 export const LinesSection = () => {
   return (
@@ -109,6 +110,13 @@ export const LinesSection = () => {
       <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
         {lineSnippets.bresenham}
       </SyntaxHighlighter>
+      <p>
+        Because it's more efficient, we can draw lines at much higher
+        resolutions easily:
+      </p>
+      <div className="center">
+        <Line4 />
+      </div>
     </>
   );
 };

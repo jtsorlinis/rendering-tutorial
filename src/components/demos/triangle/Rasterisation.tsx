@@ -1,30 +1,29 @@
-import { Stage, Layer, Line, Rect, Circle } from "react-konva";
-import { Button } from "@mui/material";
+import { Stage, Layer, Line, Rect } from "react-konva";
+import { Button, Slider } from "@mui/material";
 import { useState } from "react";
-import { Point, dragProps, edgeFunction } from "../utils";
+import { Html } from "react-konva-utils";
+import { edgeFunction } from "../../../utils/helperFuncs";
 
 const width = 500;
 const height = 500;
 const pad = 80;
 
-const p0start = { x: pad, y: height - pad };
-const p1start = { x: width / 2, y: pad };
-const p2start = { x: width - pad, y: height - pad };
+const p0 = { x: pad, y: height - pad };
+const p1 = { x: width / 2, y: pad };
+const p2 = { x: width - pad, y: height - pad };
 
-const canvPad = 0;
+const canvPad = 50;
 const start = { x: canvPad, y: canvPad };
 const end = { x: width - canvPad, y: height - canvPad };
 
-const pixelSize = 10;
+const pixelSize = 20;
 const halfPixel = pixelSize / 2;
 const xLines = (end.y - start.y) / pixelSize;
 const yLines = (end.x - start.x) / pixelSize;
 const totalPixels = xLines * yLines;
 
-export const Final = () => {
-  const [p0, setP0] = useState<Point>(p0start);
-  const [p1, setP1] = useState<Point>(p1start);
-  const [p2, setP2] = useState<Point>(p2start);
+export const Rasterisation = () => {
+  const [progress, setProgress] = useState<number>(0);
 
   const canvasSize = Math.min(window.innerWidth - 32, 500);
   const scale = canvasSize / 500;
@@ -37,9 +36,7 @@ export const Final = () => {
         color="primary"
         size="small"
         onClick={() => {
-          setP0(p0start);
-          setP1(p1start);
-          setP2(p2start);
+          setProgress(0);
         }}
       >
         Reset
@@ -52,21 +49,27 @@ export const Final = () => {
         className="stage"
       >
         <Layer>
-          <Line
-            points={[p0.x, p0.y, p1.x, p1.y]}
-            stroke="black"
-            opacity={0.5}
-          />
-          <Line
-            points={[p1.x, p1.y, p2.x, p2.y]}
-            stroke="black"
-            opacity={0.5}
-          />
-          <Line
-            points={[p2.x, p2.y, p0.x, p0.y]}
-            stroke="black"
-            opacity={0.5}
-          />
+          <Html
+            divProps={{
+              style: {
+                position: "absolute",
+                left: "5%",
+                top: "92%",
+                width: "450px",
+              },
+            }}
+          >
+            <Slider
+              value={progress}
+              valueLabelDisplay="on"
+              min={0}
+              max={totalPixels}
+              onChange={(_, v) => setProgress(v as number)}
+            />
+          </Html>
+          <Line points={[p0.x, p0.y, p1.x, p1.y]} stroke="black" />
+          <Line points={[p1.x, p1.y, p2.x, p2.y]} stroke="black" />
+          <Line points={[p2.x, p2.y, p0.x, p0.y]} stroke="black" />
           {/* Draw grid */}
           {Array.from(Array(xLines).keys()).map((i) => (
             <Line
@@ -98,7 +101,8 @@ export const Final = () => {
           <Line points={[start.x, end.y, end.x, end.y]} stroke="black" />
           <Line points={[start.x, start.y, start.x, end.y]} stroke="black" />
           <Line points={[end.x, start.y, end.x, end.y]} stroke="black" />
-          {Array.from(Array(totalPixels).keys()).map((i) => {
+          {/* Draw progress */}
+          {Array.from(Array(progress).keys()).map((i) => {
             const pos = {
               x: start.x + (i % xLines) * pixelSize + halfPixel,
               y: start.y + Math.floor(i / xLines) * pixelSize + halfPixel,
@@ -119,47 +123,6 @@ export const Final = () => {
               />
             );
           })}
-          {/* Visible dots */}
-          <Circle x={p0.x} y={p0.y} radius={5 / scale} fill={"dodgerblue"} />
-          <Circle x={p1.x} y={p1.y} radius={5 / scale} fill={"dodgerblue"} />
-          <Circle x={p2.x} y={p2.y} radius={5 / scale} fill={"dodgerblue"} />
-          {/* Invisible draggables */}
-          <Circle
-            draggable
-            x={p0.x}
-            y={p0.y}
-            radius={22}
-            onDragMove={(e) => {
-              const mousePos = { x: e.target.x(), y: e.target.y() };
-              setP0(mousePos);
-              document.body.style.cursor = "grabbing";
-            }}
-            {...dragProps}
-          />
-          <Circle
-            draggable
-            x={p1.x}
-            y={p1.y}
-            radius={22}
-            onDragMove={(e) => {
-              const mousePos = { x: e.target.x(), y: e.target.y() };
-              setP1(mousePos);
-              document.body.style.cursor = "grabbing";
-            }}
-            {...dragProps}
-          />
-          <Circle
-            draggable
-            x={p2.x}
-            y={p2.y}
-            radius={22}
-            onDragMove={(e) => {
-              const mousePos = { x: e.target.x(), y: e.target.y() };
-              setP2(mousePos);
-              document.body.style.cursor = "grabbing";
-            }}
-            {...dragProps}
-          />
         </Layer>
       </Stage>
     </div>

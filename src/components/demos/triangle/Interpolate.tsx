@@ -1,7 +1,13 @@
-import { Stage, Layer, Shape, Circle, Text } from "react-konva";
+import { Stage, Layer, Shape, Circle, Text, Rect } from "react-konva";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { Point, midPoint, edgeFunction, dragProps } from "../utils";
+import {
+  Point,
+  midPoint,
+  edgeFunction,
+  rgba,
+  dragProps,
+} from "../../../utils/helperFuncs";
 
 const width = 500;
 const height = 500;
@@ -11,7 +17,7 @@ const p0 = { x: pad, y: height - pad };
 const p1 = { x: width / 2, y: pad };
 const p2 = { x: width - pad, y: height - pad };
 
-export const Barycentric = () => {
+export const Interpolate = () => {
   const [dot, setDot] = useState<Point>(midPoint(p0, p1, p2));
   const signedArea = edgeFunction(p0, p1, p2);
   const bcu = edgeFunction(p1, p2, dot) / signedArea;
@@ -42,21 +48,21 @@ export const Barycentric = () => {
         <Layer>
           <Text
             fill={bcu > 0 ? "black" : "red"}
-            text={`Weight A: ${bcu.toFixed(3)}`}
+            text={`Red (A):\t\t\t\t\t${~~(bcu * 255)}`}
             fontSize={16}
             x={10}
             y={10}
           />
           <Text
             fill={bcv > 0 ? "black" : "red"}
-            text={`Weight B: ${bcv.toFixed(3)}`}
+            text={`Green (B):\t${~~(bcv * 255)}`}
             fontSize={16}
             x={10}
             y={30}
           />
           <Text
             fill={bcw > 0 ? "black" : "red"}
-            text={`Weight C: ${bcw.toFixed(3)}`}
+            text={`Blue (C):\t\t\t\t${~~(bcw * 255)}`}
             fontSize={16}
             x={10}
             y={50}
@@ -88,7 +94,7 @@ export const Barycentric = () => {
               context.fillStrokeShape(shape);
             }}
             stroke={"black"}
-            fill="black"
+            fill="red"
             opacity={bcu > 0 ? bcu : 0}
             strokeWidth={1}
           />
@@ -103,7 +109,7 @@ export const Barycentric = () => {
               context.fillStrokeShape(shape);
             }}
             stroke={"black"}
-            fill="black"
+            fill="lime"
             opacity={bcv > 0 ? bcv : 0}
             strokeWidth={1}
           />
@@ -118,12 +124,12 @@ export const Barycentric = () => {
               context.fillStrokeShape(shape);
             }}
             stroke={"black"}
-            fill="black"
+            fill="blue"
             opacity={bcw > 0 ? bcw : 0}
             strokeWidth={1}
           />
           <Text text="P" fontSize={16} x={dot.x + 8} y={dot.y - 6} />
-          {/* Visual dot */}
+          {/* Visible dot */}
           <Circle x={dot.x} y={dot.y} radius={5 / scale} fill={"dodgerblue"} />
           {/* Invisible draggable */}
           <Circle
@@ -138,6 +144,16 @@ export const Barycentric = () => {
             }}
             {...dragProps}
           />
+          {/* Colour at P */}
+          {bcu >= 0 && bcv >= 0 && bcw >= 0 && (
+            <Rect
+              x={10}
+              y={80}
+              width={40}
+              height={40}
+              fill={rgba(bcu, bcv, bcw)}
+            />
+          )}
         </Layer>
       </Stage>
     </div>

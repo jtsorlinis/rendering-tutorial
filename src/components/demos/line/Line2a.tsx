@@ -1,7 +1,7 @@
 import { Stage, Layer, Line, Rect, Circle, Text } from "react-konva";
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { Point, dragProps, lineAlgorithm2 } from "../../utils";
+import { Point, dragProps, lineAlgorithm2 } from "../../../utils/helperFuncs";
 
 const width = 500;
 const height = 500;
@@ -19,7 +19,6 @@ const end = { x: width - canvPad, y: height - canvPad };
 
 const xLines = (end.y - start.y) / pixelSize;
 const yLines = (end.x - start.x) / pixelSize;
-const totalPixels = xLines * yLines;
 
 export const Line2a = () => {
   const [p1, setP1] = useState<Point>(p1start);
@@ -59,7 +58,11 @@ export const Line2a = () => {
             y={10}
             fontSize={16}
           />
-          <Line points={[p0.x, p0.y, p1.x, p1.y]} stroke="black" />
+          <Line
+            points={[p0.x, p0.y, p1.x, p1.y]}
+            stroke="black"
+            opacity={0.2}
+          />
           {/* Diagonal divider */}
           <Line
             points={[start.x, end.y, end.x, start.y]}
@@ -100,13 +103,7 @@ export const Line2a = () => {
           <Line points={[start.x, end.y, end.x, end.y]} stroke="black" />
           <Line points={[start.x, start.y, start.x, end.y]} stroke="black" />
           <Line points={[end.x, start.y, end.x, end.y]} stroke="black" />
-          {Array.from(Array(totalPixels).keys()).map((i) => {
-            const pos = {
-              x: start.x + (i % xLines),
-              y: start.y + ~~(i / xLines),
-            };
-            const isOnLine = points.some((p) => p.x === pos.x && p.y === pos.y);
-            if (!isOnLine) return null;
+          {points.map((pos, i) => {
             return (
               <Rect
                 key={`p${i}`}
