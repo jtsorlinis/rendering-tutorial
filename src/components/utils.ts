@@ -127,3 +127,36 @@ export const lineAlgorithm3 = (start: Point, end: Point) => {
   }
   return points;
 };
+
+export const bresenham = (start: Point, end: Point) => {
+  const points = [];
+  let [x0, y0] = [~~start.x, ~~start.y];
+  const [x1, y1] = [~~end.x, ~~end.y];
+
+  const diffx = Math.abs(x1 - x0);
+  const diffy = -Math.abs(y1 - y0);
+
+  const stepx = x0 < x1 ? 1 : -1;
+  const stepy = y0 < y1 ? 1 : -1;
+
+  let error = diffx + diffy;
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    points.push({ x: x0, y: y0 });
+
+    if (x0 === x1 && y0 === y1) break;
+
+    const e2 = 2 * error;
+    if (e2 >= diffy) {
+      error += diffy;
+      x0 += stepx;
+    }
+
+    if (e2 <= diffx) {
+      error += diffx;
+      y0 += stepy;
+    }
+  }
+  return points;
+};

@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Link, Typography } from "@mui/material";
 import { MathJax } from "better-react-mathjax";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { lineSnippets } from "../../lineSnippets";
@@ -93,6 +93,22 @@ export const LinesSection = () => {
       <div className="center">
         <Line3 />
       </div>
+      <br />
+      <p>
+        You may have heard of Bresenham's line algorithm. It's a very popular
+        and efficient way of drawing lines in computer graphics. It's quite
+        close to what we've done here, but it avoids the use of floating point
+        (decimal) numbers and avoids any divisions, which makes quite a bit
+        faster. I won't go into it in too much detail here, but you can read
+        more about it{" "}
+        <Link href="https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm">
+          here.
+        </Link>
+      </p>
+      <p>Here's what it looks like in code:</p>
+      <SyntaxHighlighter language="typescript" style={vscDarkPlus}>
+        {lineSnippets.bresenham}
+      </SyntaxHighlighter>
     </>
   );
 };

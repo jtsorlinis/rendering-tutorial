@@ -73,8 +73,49 @@ for (let x = sx; x <= ex; x++) {
   y += slope;
 }`;
 
+const bresenham = `// Make copies of start and end values
+// ~~ is equivalent to Math.floor() but faster
+let [x0, y0] = [~~start.x, ~~start.y];
+const [x1, y1] = [~~end.x, ~~end.y];
+
+// Calculate the difference between the start and end points
+const diffx = Math.abs(x1 - x0);
+const diffy = -Math.abs(y1 - y0);
+
+// Calculate the step directions for x and y
+const stepx = x0 < x1 ? 1 : -1;
+const stepy = y0 < y1 ? 1 : -1;
+
+// Calculate the error
+let error = diffx + diffy;
+
+// Loop until we reach the end point
+while (true) {
+  // Draw the current pixel
+  setPixel(x0, y0);
+
+  // Check if we've reached the end point
+  if (x0 === x1 && y0 === y1) break;
+
+  // Calculate double the error
+  const e2 = 2 * error;
+
+  // Check if we need to increment y
+  if (e2 >= diffy) {
+    error += diffy;
+    x0 += stepx;
+  }
+
+  // Check if we need to increment x
+  if (e2 <= diffx) {
+    error += diffx;
+    y0 += stepy;
+  }
+}`;
+
 export const lineSnippets = {
   line1,
   line2,
   line3,
+  bresenham,
 };
