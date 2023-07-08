@@ -111,8 +111,8 @@ export const LinesSection = () => {
         {lineSnippets.bresenham}
       </SyntaxHighlighter>
       <p>
-        Because it's more efficient, we can draw lines at much higher
-        resolutions easily:
+        Because it's more efficient, we can draw more lines and at higher
+        resolutions without worrying about performance:
       </p>
       <div className="center">
         <Line4 />
