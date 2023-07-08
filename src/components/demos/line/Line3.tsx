@@ -8,9 +8,10 @@ const height = 500;
 const pad = 75;
 
 const pixelSize = 10;
+const halfPixel = 5;
 
-const p0start = { x: pad, y: pad };
-const p1start = { x: width - pad, y: height - pad };
+const p0start = { x: width / 2 + halfPixel, y: height / 2 - halfPixel };
+const p1start = { x: width - pad, y: height - pad - pixelSize };
 
 const canvPad = 0;
 const start = { x: canvPad, y: canvPad };
