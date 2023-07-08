@@ -112,11 +112,16 @@ export const LinesSection = () => {
       </SyntaxHighlighter>
       <p>
         Because it's more efficient, we can draw more lines and at higher
-        resolutions without worrying about performance:
+        resolutions without worrying about performance. But why did we need to
+        learn lines when we already know how to rasterise triangles? Because the
+        topics we're going to learn in the next section should hopefully be much
+        easier to understand with lines.
       </p>
       <div className="center">
         <Line4 />
       </div>
+      <br />
+      <p></p>
     </>
   );
 };
