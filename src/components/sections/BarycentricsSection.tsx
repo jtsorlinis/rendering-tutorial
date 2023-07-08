@@ -105,14 +105,21 @@ export const BarycentricsSection = () => {
       </Typography>
       <p>
         I hope you enjoyed this tutorial, and it gave you a good understanding
-        of how triangle rasterisation works. One thing I didn't mention but you
-        may have noticed, is that each pixel can be calculated independently,
-        which means this algorithm is very easily made parallel. And GPU's are
-        very good at doing things in parallel. Go figure.
+        of how triangle rasterisation works. There's a couple of things we
+        haven't touched on here which I plane to make other tutorials for when I
+        get a chance:
       </p>
+      <ul>
+        <li>Line rasterisation</li>
+        <li>Viewport transformation</li>
+        <li>Going 3D</li>
+        <li>Model loading & rendering</li>
+        <li>Clipping</li>
+      </ul>
       <p>
-        If you have any questions/suggestions or want to see more, feel free to
-        drop me an <Link href="mailto:jtsorlinis@gmail.com">email</Link>.
+        If you have any questions or suggestions for how I can improve this,
+        feel free to drop me an{" "}
+        <Link href="mailto:jtsorlinis@gmail.com">email</Link>.
       </p>
       <Typography className="sectionHeading" variant="h5">
         Full code for our triangle rasteriser
