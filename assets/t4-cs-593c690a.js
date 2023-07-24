@@ -1,1 +1,0 @@
-import e from"./csharp-bb16d4e4.js";import g from"./t4-templating-ef79f002.js";import"./index-e370a681.js";import"./konva-e1600009.js";a.displayName="t4-cs";a.aliases=["t4"];function a(t){t.register(e),t.register(g),t.languages.t4=t.languages["t4-cs"]=t.languages["t4-templating"].createT4("csharp")}export{a as default};
