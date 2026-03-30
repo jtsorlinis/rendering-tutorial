@@ -16,14 +16,19 @@ const ThemeToggleContext = React.createContext({
 });
 
 export const ThemeToggleProvider = ({ children }: { children: ReactNode }) => {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const prefersDarkMode = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+  const [mode, setMode] = useState<"light" | "dark">(
+    prefersDarkMode ? "dark" : "light",
+  );
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
         setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
       },
     }),
-    []
+    [],
   );
 
   const theme = useMemo(
@@ -33,7 +38,7 @@ export const ThemeToggleProvider = ({ children }: { children: ReactNode }) => {
           mode,
         },
       }),
-    [mode]
+    [mode],
   );
 
   return (

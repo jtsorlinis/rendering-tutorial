@@ -89,7 +89,7 @@ export const IntroSection = () => {
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/-P28LKWTzrI"
+            src="https://www.youtube.com/embed/WmW6SD-EHVY"
             title="YouTube video player"
             allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
           ></iframe>
